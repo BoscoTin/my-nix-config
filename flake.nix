@@ -31,14 +31,17 @@
         inherit system;
         modules = [
           # darwin system settings
-          ./darwin/config.nix
+          ./darwin
 
           # modules
           ./modules/nix-core.nix
+          ./modules/home.nix
 
           # home manager
           home-manager.darwinModules.home-manager
           {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
             home-manager.users.${username} = import ./home;
           }
         ];
