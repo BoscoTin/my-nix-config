@@ -8,12 +8,12 @@
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
-    }
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
-    }
+    };
   };
 
   outputs = inputs @ { 
@@ -23,26 +23,27 @@
     home-manager,
     ...
   }: let
-      username = "bosco" # system username
-      system = "aarch64-darwin"; # follow machine
+      username = "bosco"; # system username
+      system = "x86_64-darwin"; # follow machine
       hostname = "cerulean"; # take whatever you want
+      specialArgs =
+        inputs
+        // {
+          inherit username hostname;
+        };
     in {
       darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
-        inherit system;
+        inherit system specialArgs;
         modules = [
-          # darwin system settings
           ./darwin
+          ./modules
 
-          # modules
-          ./modules/nix-core.nix
-          ./modules/home.nix
-
-          # home manager
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./home;
+            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.users.${username} = import ./home-manager;
           }
         ];
       };

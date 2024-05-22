@@ -3,6 +3,6 @@
 {
   imports = [
     ./system.nix
-    ./brew.nix
+    ./homebrew.nix
   ];
 }

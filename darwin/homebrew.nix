@@ -7,16 +7,12 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-    }
+    };
 
+    # only add tools only available in casks here
     casks = [
       # input
       "openvanilla"
-
-      # browsers
-      "arc"
-      "firefox"
-      "brave-browser"
 
       # system extensions
       "istats-menus"
@@ -28,5 +24,5 @@
       "alfred"
       "lulu"
     ];
-  }
+  };
 }

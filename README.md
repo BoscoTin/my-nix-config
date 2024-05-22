@@ -11,3 +11,15 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 ```
 nix run nixpkgs#git -- clone https://github.com/BoscoTin/my-nix-config.git
 ```
+
+3. Build flake
+
+```
+nix build ".#darwinConfigurations.${PROFILE}.system" --extra-experimental-features "nix-command flakes"
+```
+
+4. darwin rebuild flake
+
+```
+./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#${PROFILE}"
+```
