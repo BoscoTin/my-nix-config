@@ -1,3 +1,7 @@
+## Reminder
+
+1. When adding new files, make sure add to staging area before build
+
 ## Steps
 
 1. Install Nix
