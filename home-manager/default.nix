@@ -1,6 +1,9 @@
 { username, ... }:
 
 {
+  imports = [
+    ./zsh.nix
+  ];
 
   home = {
     username = username;
