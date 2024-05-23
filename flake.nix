@@ -23,13 +23,14 @@
     home-manager,
     ...
   }: let
-      username = "bosco"; # system username
-      system = "x86_64-darwin"; # follow machine
+      username = ""; # system username
+      useremail = "";
+      system = ""; # follow machine (x86_64-darwin / aarch64-darwin)
       hostname = "cerulean"; # take whatever you want
       specialArgs =
         inputs
         // {
-          inherit username hostname;
+          inherit username useremail hostname;
         };
     in {
       darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
