@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
-  users.users.bosco = {
-    home = "/Users/bosco";
-    shell = "${pkgs.zsh}/bin/zsh";
+  users.users.${username} = {
+    home = "/Users/${username}";
   };
+
+  nix.settings.trusted-users = [username];
 }
