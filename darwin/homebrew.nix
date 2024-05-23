@@ -14,15 +14,26 @@
       # input
       "openvanilla"
 
+      # browsers
+      "firefox"
+      "brave-browser"
+      "arc"
+
       # system extensions
       "istats-menus"
       "audio-hijack"
       "loopback"
-      "shottr"
+      "lulu"
 
+      # chat
+      "discord"
+      "telegram"
+
+      # others
       "motrix"
       "alfred"
-      "lulu"
+      "anytype"
+      "shottr"
     ];
   };
 }

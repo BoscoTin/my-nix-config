@@ -1,13 +1,16 @@
-{ username, ... }:
+{ username, pkgs, ... }:
 
 {
   imports = [
-    ./zsh.nix
-    ./git.nix
+    ./shell.nix
+    ./git
+    ./ssh.nix
+    ./vscode.nix
   ];
 
   home = {
     username = username;
+    homeDirectory = "/Users/${username}";
     stateVersion = "23.11";
   };
 

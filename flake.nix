@@ -2,7 +2,7 @@
   description = "bosco configuration on nix ecosystem";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
     darwin = {
@@ -23,14 +23,14 @@
     home-manager,
     ...
   }: let
-      username = ""; # system username
-      useremail = "";
-      system = ""; # follow machine (x86_64-darwin / aarch64-darwin)
+      username = "bosco"; # system username
+      useremail = ""; # system user email
+      system = "aarch64-darwin"; # follow machine (x86_64-darwin / aarch64-darwin)
       hostname = "cerulean"; # take whatever you want
       specialArgs =
         inputs
         // {
-          inherit username useremail hostname;
+          inherit system username useremail hostname;
         };
     in {
       darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
