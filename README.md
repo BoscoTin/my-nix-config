@@ -4,11 +4,14 @@
 
 ## Steps
 
-1. Install Nix
+1. Install Nix / homebrew
+
+https://brew.sh
 
 ```
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
+
 
 2. Clone repository
 
