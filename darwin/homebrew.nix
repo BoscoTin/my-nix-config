@@ -20,7 +20,6 @@
       "arc"
 
       # system extensions
-      "istats-menus"
       "audio-hijack"
       "loopback"
       "lulu"
