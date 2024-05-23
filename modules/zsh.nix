@@ -3,7 +3,6 @@
 {
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
     enableCompletion = true;
     initExtra = ''
       # make sure brew is on the path for aarch64-darwin
