@@ -14,5 +14,10 @@
       jnoortheen.nix-ide
       golang.go
     ];
+
+    userSettings = {
+      "workbench.colorTheme" = "One Dark Pro Darker";
+      "terminal.integrated.fontFamily" = "'MesloLGS NF', 'Source Code Pro', 'FiraCode Nerd Font Mono'";
+    };
   };
 }
