@@ -11,11 +11,16 @@
     userName = username;
     userEmail = useremail;
 
-    includes = [];
+    includes = [
+      ./users/w_sl_bitbucket.nix
+    ];
 
     extraConfig = {
       push.autoSetupRemote = true;
       pull.rebase = true;
+      core = {
+        sshCommand = "ssh -i ~/.ssh/ps_github";
+      };
     };
   };
 }
