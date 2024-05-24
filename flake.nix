@@ -24,7 +24,7 @@
     ...
   }: let
       username = "bosco"; # system username
-      useremail = ""; # system user email
+      useremail = "boscotang98@gmail.com"; # system user email
       system = "aarch64-darwin"; # follow machine (x86_64-darwin / aarch64-darwin)
       hostname = "cerulean"; # take whatever you want
       specialArgs =
