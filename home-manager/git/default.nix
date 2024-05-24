@@ -12,15 +12,13 @@
     userEmail = useremail;
 
     includes = [
-      ./users/w_sl_bitbucket.nix
+      ./users/ps_github.nix
+      ./users/ps_gitlab.nix
     ];
 
     extraConfig = {
       push.autoSetupRemote = true;
       pull.rebase = true;
-      core = {
-        sshCommand = "ssh -i ~/.ssh/ps_github";
-      };
     };
   };
 }
