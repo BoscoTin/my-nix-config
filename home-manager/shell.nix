@@ -4,6 +4,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
     initExtraBeforeCompInit = ''
       # p10k instant prompt
@@ -16,6 +17,9 @@
         eval "$(/opt/homebrew/bin/brew shellenv)"
       fi
       eval "$(ssh-agent -s)"
+
+      bindkey '^E' autosuggest-accept
+      ZSH_AUTOSUGGEST_STRATEGY=(history completion)
     '';
 
     oh-my-zsh = {
