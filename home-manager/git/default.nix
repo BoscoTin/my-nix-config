@@ -27,6 +27,10 @@
     userName = username;
     userEmail = useremail;
 
+    includes = [
+      ./users/ns_work.nix
+    ];
+
     extraConfig = {
       push.autoSetupRemote = true;
       pull.rebase = true;
