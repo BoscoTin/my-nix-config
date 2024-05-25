@@ -19,11 +19,6 @@
       "brave-browser"
       "arc"
 
-      # system extensions
-      "audio-hijack"
-      "loopback"
-      "lulu"
-
       # chat
       "discord"
       "telegram"
@@ -32,6 +27,7 @@
       "motrix"
       "alfred"
       "anytype"
+      "lulu"
       "shottr"
     ];
   };
