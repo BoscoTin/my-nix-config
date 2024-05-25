@@ -27,15 +27,13 @@
     userName = username;
     userEmail = useremail;
 
-    includes = [
-      ./users/ps_github.nix
-      ./users/ps_gitlab.nix
-      # ./users/w_clea_gitlab.nix
-    ];
-
     extraConfig = {
       push.autoSetupRemote = true;
       pull.rebase = true;
+
+      core = {
+        sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
+      };
     };
   };
 }

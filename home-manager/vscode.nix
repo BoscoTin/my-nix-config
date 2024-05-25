@@ -16,7 +16,12 @@
     ];
 
     userSettings = {
+      # theme
       "workbench.colorTheme" = "One Dark Pro Darker";
+      "oneDarkPro.bold" = true;
+      "editor.semanticHighlighting.enabled" = true;
+
+      # vscode inline terminal settings
       "terminal.integrated.fontFamily" = "'MesloLGS NF', 'Source Code Pro', 'FiraCode Nerd Font Mono'";
     };
   };
