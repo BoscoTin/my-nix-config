@@ -24,6 +24,7 @@
       "telegram"
 
       # others
+      "blackhole-16ch"
       "motrix"
       "alfred"
       "anytype"
