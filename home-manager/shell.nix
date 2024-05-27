@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   programs.zsh = {
@@ -16,10 +16,10 @@
       if [[ $(uname -m) == 'arm64' ]]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
       fi
-      eval "$(ssh-agent -s)"
 
       bindkey '^E' autosuggest-accept
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+      export PATH="/etc/profiles/per-user/${username}/bin:$PATH"
     '';
 
     oh-my-zsh = {

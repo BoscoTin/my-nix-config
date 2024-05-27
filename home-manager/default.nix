@@ -8,6 +8,7 @@
 
 {
   imports = [
+    ./packages.nix
     ./shell.nix
     ./git
     ./ssh.nix

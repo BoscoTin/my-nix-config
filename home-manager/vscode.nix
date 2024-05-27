@@ -18,6 +18,7 @@
     userSettings = {
       # theme
       "workbench.colorTheme" = "One Dark Pro Darker";
+      "workbench.editor.wrapTabs" = true;
       "oneDarkPro.bold" = true;
       "editor.semanticHighlighting.enabled" = true;
 
