@@ -26,14 +26,13 @@
       username = "bosco"; # system username
       useremail = "boscotang98@gmail.com"; # system user email
       system = "aarch64-darwin"; # follow machine (x86_64-darwin / aarch64-darwin)
-      hostname = "cerulean"; # take whatever you want
       specialArgs =
         inputs
         // {
-          inherit system username useremail hostname;
+          inherit system username useremail;
         };
     in {
-      darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
+      darwinConfigurations.cerulean = darwin.lib.darwinSystem {
         inherit system specialArgs;
         modules = [
           ./darwin

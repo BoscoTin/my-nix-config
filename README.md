@@ -4,29 +4,32 @@
 
 ## Steps
 
-1. Install Nix / homebrew
+1. Init
 
-https://brew.sh
-
-```
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-```
-
-
-2. Clone repository
+- install nix
+- install homebrew
+- clone this config repo
 
 ```
-nix run nixpkgs#git -- clone https://github.com/BoscoTin/my-nix-config.git
+sh <(curl -L https://nixos.org/nix/install)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+nix run nixpkgs#git --extra-experimental-features "nix-command flakes" -- clone https://github.com/BoscoTin/my-nix-config.git
 ```
 
-3. Build flake
+2. setup required files
 
 ```
-nix build ".#darwinConfigurations.${PROFILE}.system" --extra-experimental-features "nix-command flakes"
+make init
 ```
 
-4. darwin rebuild flake
+3. Build & apply flake
 
 ```
-./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#${PROFILE}"
+make build
 ```
+
+## After setup (optional)
+
+1. Macos Terminal color profile
+
+Terminal > Preferences > Profiles > Colors > Import... > `darwin/extras/Mocha.terminal`

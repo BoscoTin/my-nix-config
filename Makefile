@@ -1,4 +1,8 @@
 PROFILE=cerulean
+EMAIL=boscotang98@gmail.com
+
+init:
+	ssh-keygen -t ed25519 -C "${EMAIL}" -f ~/.ssh/id_ed25519_personal
 
 build:
 	cp home-manager/git/users/notshown/ns_*.nix home-manager/git/users
