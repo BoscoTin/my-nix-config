@@ -23,32 +23,17 @@
     home-manager,
     ...
   }: let
-      username = "bosco"; # system username
-      useremail = "boscotang98@gmail.com"; # system user email
-      system = "aarch64-darwin"; # follow machine (x86_64-darwin / aarch64-darwin)
-      specialArgs =
-        inputs
-        // {
-          inherit system username useremail;
-        };
-    in {
-      darwinConfigurations.cerulean = darwin.lib.darwinSystem {
-        inherit system specialArgs;
-        modules = [
-          ./darwin
-          ./modules
-
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs;
-            home-manager.users.${username} = import ./home-manager;
-          }
-        ];
+      vars = {
+        username = "bosco"; # system username
+        useremail = "boscotang98@gmail.com"; # system user email
+        isCasualProfile = true; # whether to use work profile or not
       };
-
-      # set formatter for ${system}
-      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    in {
+      darwinConfigurations = (
+        import ./darwin {
+          inherit (nixpkgs) lib;
+          inherit inputs nixpkgs home-manager darwin vars;
+        }
+      );
     };
 }

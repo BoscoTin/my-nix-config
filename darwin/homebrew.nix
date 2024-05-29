@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, vars, ... }:
 
 {
   homebrew = {
@@ -19,10 +19,6 @@
       "brave-browser"
       "arc"
 
-      # chat
-      "discord"
-      "telegram"
-
       # others
       "blackhole-16ch"
       "motrix"
@@ -30,6 +26,10 @@
       "anytype"
       "lulu"
       "shottr"
+    ] ++ lib.optionals (vars.isCasualProfile == true) [
+      # chat
+      "discord"
+      "telegram"
     ];
   };
 }

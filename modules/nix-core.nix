@@ -1,4 +1,4 @@
-{ pkgs, system, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   environment.shells = [

@@ -1,13 +1,13 @@
-{ pkgs, username, ... }:
+{ pkgs, vars, ... }:
 {
-  users.users.${username} = {
-    home = "/Users/${username}";
+  users.users.${vars.username} = {
+    home = "/Users/${vars.username}";
     shell = "${pkgs.zsh}/bin/zsh";
   };
 
   environment.variables.SHELL = "${pkgs.zsh}/bin/zsh";
 
-  nix.settings.trusted-users = [username];
+  nix.settings.trusted-users = [vars.username];
 
   fonts.fontDir = {
     enable = true;

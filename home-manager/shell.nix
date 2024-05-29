@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, vars, ... }:
 
 {
   programs.zsh = {
@@ -19,7 +19,7 @@
 
       bindkey '^E' autosuggest-accept
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-      export PATH="/etc/profiles/per-user/${username}/bin:$PATH"
+      export PATH="/etc/profiles/per-user/${vars.username}/bin:$PATH"
     '';
 
     oh-my-zsh = {

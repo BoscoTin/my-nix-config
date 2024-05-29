@@ -30,6 +30,14 @@ make build
 
 ## After setup (optional)
 
+```
+make after_run
+```
+
 1. Macos Terminal color profile
 
 Terminal > Preferences > Profiles > Colors > Import... > `darwin/extras/Mocha.terminal`
+
+2. Macos add input method
+
+System settings > Input method > + > Openvanilla

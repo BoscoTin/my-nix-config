@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  username,
+  vars,
   ...
 }: 
 
@@ -30,8 +30,8 @@
   };
 
   home = {
-    username = username;
-    homeDirectory = "/Users/${username}";
+    username = vars.username;
+    homeDirectory = "/Users/${vars.username}";
     stateVersion = "23.11";
   };
 

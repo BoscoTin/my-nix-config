@@ -2,8 +2,7 @@
   config,
   lib,
   pkgs,
-  username,
-  useremail,
+  vars,
   ...
 }: {
 
@@ -11,10 +10,10 @@
     enable = true;
     lfs.enable = true;
 
-    userName = username;
-    userEmail = useremail;
+    userName = vars.username;
+    userEmail = vars.useremail;
 
-    includes = [
+    includes = [] ++ lib.optionals (vars.isCasualProfile == true) [
       ./users/ns_work.nix
     ];
 
@@ -27,7 +26,7 @@
       pull.rebase = true;
 
       core = {
-        sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
+        sshCommand = "ssh -i ~/.ssh/id_ed25519_default";
         editor = "vim";
       };
     };

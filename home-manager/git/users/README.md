@@ -12,6 +12,6 @@
   };
 
   # refer https://git-scm.com/docs/git-config#_conditional_includes
-  condition = "";
+  condition = "hasconfig:remote.*.url:https://example.com/**";
 }
 ```
