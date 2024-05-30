@@ -40,5 +40,19 @@
       ];
       persistent-others = [ "/Users/${vars.username}/Downloads" ];
     };
+
+    NSGlobalDomain = {
+      # fast key repeat in terminal
+      ApplePressAndHoldEnabled = false;
+      InitialKeyRepeat = 25;
+      KeyRepeat = 1;
+
+      # typing & spelling
+      NSAutomaticCapitalizationEnabled = false;
+      NSAutomaticDashSubstitutionEnabled = false;
+      NSAutomaticPeriodSubstitutionEnabled = false;
+      NSAutomaticQuoteSubstitutionEnabled = false;
+      NSAutomaticSpellingCorrectionEnabled = false;
+    };
   };
 }
