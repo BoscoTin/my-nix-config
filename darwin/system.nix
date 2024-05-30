@@ -38,7 +38,7 @@
         "/Applications/Brave Browser.app/"
         "/Users/bosco/Applications/Home Manager Apps/Visual Studio Code.app"
       ];
-      persistent-others = [ "~/Downloads" ];
+      persistent-others = [ "/Users/${vars.username}/Downloads" ];
     };
   };
 }
