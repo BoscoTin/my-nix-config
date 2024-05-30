@@ -54,5 +54,12 @@
       NSAutomaticQuoteSubstitutionEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
     };
+
+    menuExtraClock = {
+      Show24Hour = true;
+      ShowAMPM = false;
+      ShowDate = 1; # always
+      ShowSeconds = true;
+    };
   };
 }
