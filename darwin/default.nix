@@ -1,7 +1,7 @@
 { inputs, nixpkgs, home-manager, darwin, vars, ... }:
 
 let
-  system = "x86_64-darwin";
+  system = "aarch64-darwin";
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;

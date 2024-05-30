@@ -14,4 +14,5 @@ build:
 	rm home-manager/git/users/ns_*.nix
 
 after_run:
+	killall Dock
 	echo "Copy below ssh public key to remote sites$'\n$$(cat ~/.ssh/id_ed25519_default.pub)$'\nhttps://github.com/settings/keys$'\nhttps://gitlab.com/-/profile/keys$'\nhttps://bitbucket.org/account/user/settings/ssh-keys/"
