@@ -7,6 +7,8 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
+    # ensure add path in shell
+    # https://github.com/LnL7/nix-darwin/issues/922
     systemPackages = with pkgs; [
       neofetch
       go
@@ -77,6 +79,7 @@
     };
 
     menuExtraClock = {
+      # seems not working on macos sonoma
       Show24Hour = true;
       ShowAMPM = false;
       ShowDate = 1; # always

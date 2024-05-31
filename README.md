@@ -34,10 +34,12 @@ make build
 make after_run
 ```
 
-1. Macos Terminal color profile
+### Macos
+
+1. Terminal color profile
 
 Terminal > Preferences > Profiles > Colors > Import... > `darwin/extras/Mocha.terminal`
 
-2. Macos add input method
+2. Openvanilla
 
 System settings > Input method > + > Openvanilla
