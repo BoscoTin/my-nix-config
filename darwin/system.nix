@@ -25,6 +25,8 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
+  # mac osx settings
+  security.pam.enableSudoTouchIdAuth = true;
   system.defaults = {
     dock = {
       autohide = false;
