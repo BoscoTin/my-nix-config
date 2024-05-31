@@ -1,4 +1,4 @@
 result
 result/
 **/.DS_Store
-home-manager/git/users/notshown/*.nix
+home-manager/programs/git/users/notshown/*.nix
