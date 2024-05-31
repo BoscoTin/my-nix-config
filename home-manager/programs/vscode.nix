@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{ 
+  lib,
+  pkgs,
+  vars,
+  ...
+}:
 
 {
   programs.vscode = {
@@ -6,24 +11,28 @@
     enableUpdateCheck = true;
     enableExtensionUpdateCheck = false;
     extensions = with pkgs.vscode-extensions; [
-      zhuangtongfa.material-theme
-      vscode-icons-team.vscode-icons
-      oderwat.indent-rainbow
+      Catppuccin.catppuccin-vsc
+      Catppuccin.catppuccin-vsc-icons
       hashicorp.terraform
       eamodio.gitlens
       jnoortheen.nix-ide
       golang.go
+    ] ++ lib.optionals (vars.isCasualProfile == true) [
+      sourcegraph.cody-ai
     ];
 
     userSettings = {
-      # theme
-      "workbench.colorTheme" = "One Dark Pro Darker";
+      "workbench.colorTheme" = "Catppuccin Macchiato";
+      "workbench.iconTheme" = "catppuccin-macchiato";
       "workbench.editor.wrapTabs" = true;
-      "oneDarkPro.bold" = true;
       "editor.semanticHighlighting.enabled" = true;
-
-      # vscode inline terminal settings
       "terminal.integrated.fontFamily" = "'MesloLGS NF', 'Source Code Pro', 'FiraCode Nerd Font Mono'";
+      "terminal.integrated.scrollback" = 50000;
+      "terminal.integrated.persistentSessionScrollback" = 0;
+
+      # Apply when want to switch one dark pro
+      # "workbench.colorTheme" = "One Dark Pro Darker";
+      # "oneDarkPro.bold" = true;
     };
   };
 }
