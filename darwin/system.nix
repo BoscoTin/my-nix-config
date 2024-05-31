@@ -25,8 +25,11 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
+  system.stateVersion = 4;
+
   # mac osx settings
   security.pam.enableSudoTouchIdAuth = true;
+
   system.defaults = {
     dock = {
       autohide = false;
@@ -34,6 +37,8 @@
       magnification = true;
       largesize = 48;
       orientation = "bottom";
+      mru-spaces = false;
+      show-recents = false;
       persistent-apps = [
         "/System/Applications/Launchpad.app/"
         "/Applications/Discord.app/"
@@ -60,6 +65,22 @@
       NSAutomaticPeriodSubstitutionEnabled = false;
       NSAutomaticQuoteSubstitutionEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
+
+      # clock
+      AppleICUForce24HourTime = true;
+    };
+
+    finder = {
+      AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
+      ShowPathbar = true;
+    };
+
+    menuExtraClock = {
+      Show24Hour = true;
+      ShowAMPM = false;
+      ShowDate = 1; # always
+      ShowSeconds = true;
     };
   };
 }
