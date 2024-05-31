@@ -7,6 +7,11 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
+    systemPackages = with pkgs; [
+      neofetch
+      go
+      ripgrep
+    ];
   };
 
   nix.settings.trusted-users = [vars.username];

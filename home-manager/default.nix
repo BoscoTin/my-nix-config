@@ -32,13 +32,6 @@
         ${pkgs.rsync}/bin/rsync $rsyncArgs "$apps_source/" "$app_target"
       '';
     };
-
-    packages = with pkgs; [
-      neofetch
-      go
-      wget
-      ripgrep
-    ];
   };
 
   # Let Home Manager install and manage itself.

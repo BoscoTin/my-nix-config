@@ -19,7 +19,12 @@
 
       bindkey '^E' autosuggest-accept
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+      # user profile of nix (home manager)
       export PATH="/etc/profiles/per-user/${vars.username}/bin:$PATH"
+      
+      # system profile of nix (nix-darwin)
+      export PATH="/run/current-system/sw/bin:$PATH"
     '';
 
     oh-my-zsh = {
