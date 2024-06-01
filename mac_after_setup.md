@@ -25,3 +25,7 @@ System settings > Show previews > when unlocked
 ## Finder sidebar
 
 Open finder > Move to ~/Users/user > File > Add to sidebar
+
+## Theme
+
+Wallpaper > Big sur...
