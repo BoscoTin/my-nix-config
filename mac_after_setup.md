@@ -10,7 +10,7 @@ Many config not cover by nix (sigh)
     - bluetooth show
     - sound / now playing not show
     - battery show percentage
-- Wallpaper > Bigsur
+- Wallpaper > Bigsur graphic
 
 ## Openvanilla
 

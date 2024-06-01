@@ -6,6 +6,7 @@
     enableCompletion = true;
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
+    historySubstringSearch.enable = true;
     initExtraBeforeCompInit = ''
       # p10k instant prompt
       P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
@@ -19,6 +20,7 @@
 
       bindkey '^E' autosuggest-accept
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 
       # user profile of nix (home manager)
       export PATH="/etc/profiles/per-user/${vars.username}/bin:$PATH"
@@ -32,11 +34,6 @@
       ll = "eza -bhl --icons --group-directories-first"; # long list
       la = "eza -abhl --icons --group-directories-first"; # all list
       lt = "eza --tree --level=2 --icons"; # tree
-    };
-
-    # for history, consider some plugins to replace
-    oh-my-zsh = {
-      enable = true;
     };
 
     plugins = with pkgs; [
