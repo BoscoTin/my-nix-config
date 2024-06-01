@@ -30,6 +30,7 @@
       # chat
       "discord"
       "telegram"
+      "signal"
     ];
   };
 }

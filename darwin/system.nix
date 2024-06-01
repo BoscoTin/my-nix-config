@@ -46,6 +46,7 @@
         "/System/Applications/Launchpad.app/"
         "/Applications/Discord.app/"
         "/Applications/Telegram.app/"
+        "/Applications/Signal.app/"
         "/Applications/Anytype.app/"
         "/System/Applications/Notes.app/"
         "/Applications/Firefox.app/"
