@@ -42,13 +42,7 @@ make after_run
 
 ### Macos
 
-1. Terminal color profile
-
-Terminal > Preferences > Profiles > Colors > Import... > `darwin/extras/Mocha.terminal`
-
-2. Openvanilla
-
-System settings > Input method > + > Openvanilla
+Refer to [here](mac_after_setup.md)
 
 ## Problems on macos / nix-darwin?
 
