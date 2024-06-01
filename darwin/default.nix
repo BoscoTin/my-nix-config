@@ -12,9 +12,9 @@ in
   cerulean = darwin.lib.darwinSystem {
     inherit system specialArgs;
     modules = [
+      ./nix-core.nix
       ./system.nix
       ./homebrew.nix
-      ../modules
 
       home-manager.darwinModules.home-manager
       {
