@@ -27,6 +27,14 @@
       export PATH="/run/current-system/sw/bin:$PATH"
     '';
 
+    shellAliases = {
+      ls = "eza --icons always"; # default view
+      ll = "eza -bhl --icons --group-directories-first"; # long list
+      la = "eza -abhl --icons --group-directories-first"; # all list
+      lt = "eza --tree --level=2 --icons"; # tree
+    };
+
+    # for history, consider some plugins to replace
     oh-my-zsh = {
       enable = true;
     };

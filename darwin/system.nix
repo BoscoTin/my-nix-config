@@ -13,6 +13,7 @@
       neofetch
       go
       ripgrep
+      eza
     ];
   };
 
