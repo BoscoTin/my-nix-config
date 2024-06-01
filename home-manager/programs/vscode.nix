@@ -10,15 +10,14 @@
     enable = true;
     enableUpdateCheck = true;
     enableExtensionUpdateCheck = false;
+
     extensions = with pkgs.vscode-extensions; [
-      Catppuccin.catppuccin-vsc
-      Catppuccin.catppuccin-vsc-icons
       hashicorp.terraform
       eamodio.gitlens
       jnoortheen.nix-ide
       golang.go
-    ] ++ lib.optionals (vars.isCasualProfile == true) [
-      sourcegraph.cody-ai
+      catppuccin.catppuccin-vsc
+      catppuccin.catppuccin-vsc-icons
     ];
 
     userSettings = {
