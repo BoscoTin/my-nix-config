@@ -9,7 +9,7 @@ let
   specialArgs = { inherit inputs system pkgs vars; };
 in
 {
-  cerulean = darwin.lib.darwinSystem {
+  ${vars.hostProfile} = darwin.lib.darwinSystem {
     inherit system specialArgs;
     modules = [
       ./nix-core.nix

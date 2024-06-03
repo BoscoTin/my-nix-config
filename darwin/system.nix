@@ -5,6 +5,9 @@
     shell = "${pkgs.zsh}/bin/zsh";
   };
 
+  networking.hostName = "00-${vars.username}-${vars.deviceName}";
+  networking.localHostName = "00-${vars.hostProfile}-${vars.deviceName}";
+
   environment = {
     shells = with pkgs; [ zsh ];
     # ensure add path in shell

@@ -27,6 +27,8 @@
         username = "bosco"; # system username
         useremail = "boscotang98@gmail.com"; # system user email
         isCasualProfile = true; # whether to use work profile or not
+        hostProfile = "cerulean"; # profile name, keep same with makefile
+        deviceName = "mba"; # used in localHostName / hostName
       };
     in {
       darwinConfigurations = (
