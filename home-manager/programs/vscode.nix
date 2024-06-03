@@ -11,14 +11,22 @@
     enableUpdateCheck = true;
     enableExtensionUpdateCheck = false;
 
-    extensions = with pkgs.vscode-extensions; [
-      hashicorp.terraform
-      eamodio.gitlens
-      jnoortheen.nix-ide
-      golang.go
-      catppuccin.catppuccin-vsc
-      catppuccin.catppuccin-vsc-icons
-    ];
+    extensions =
+      (with pkgs.vscode-extensions; [
+        catppuccin.catppuccin-vsc
+        catppuccin.catppuccin-vsc-icons
+      ])
+      ++ (with pkgs.vscode-marketplace; [
+        hashicorp.terraform
+        eamodio.gitlens
+        jnoortheen.nix-ide
+        golang.go
+      ])
+      ++ lib.optionals (vars.isCasualProfile == true) (
+        with pkgs.vscode-marketplace; [
+          sourcegraph.cody-ai
+        ]
+      );
 
     userSettings = {
       "workbench.colorTheme" = "Catppuccin Macchiato";
@@ -28,10 +36,6 @@
       "terminal.integrated.fontFamily" = "'MesloLGS NF', 'Source Code Pro', 'FiraCode Nerd Font Mono'";
       "terminal.integrated.scrollback" = 50000;
       "terminal.integrated.persistentSessionScrollback" = 0;
-
-      # Apply when want to switch one dark pro
-      # "workbench.colorTheme" = "One Dark Pro Darker";
-      # "oneDarkPro.bold" = true;
     };
   };
 }

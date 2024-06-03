@@ -5,6 +5,9 @@ let
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;
+    overlays = [
+      inputs.nix-vscode-extensions.overlays.default
+    ];
   };
   specialArgs = { inherit inputs system pkgs vars; };
 in
