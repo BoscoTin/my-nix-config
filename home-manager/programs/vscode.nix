@@ -36,6 +36,7 @@
       "terminal.integrated.fontFamily" = "'MesloLGS NF', 'Source Code Pro', 'FiraCode Nerd Font Mono'";
       "terminal.integrated.scrollback" = 50000;
       "terminal.integrated.persistentSessionScrollback" = 0;
+      "editor.inlineSuggest.suppressSuggestions" = true;
     };
   };
 }
