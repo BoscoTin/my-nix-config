@@ -17,6 +17,8 @@
       go
       ripgrep
       eza
+
+      hoppscotch
     ];
   };
 
@@ -50,12 +52,10 @@
         "/Applications/Discord.app/"
         "/Applications/Telegram.app/"
         "/Applications/Signal.app/"
-        "/Applications/Anytype.app/"
         "/System/Applications/Notes.app/"
-        "/Applications/Firefox.app/"
         "/Applications/Arc.app/"
-        "/Applications/Brave Browser.app/"
         "/Users/bosco/Applications/Home Manager Apps/Visual Studio Code.app"
+        "/run/current-system/Applications/Hoppscotch.app"
       ];
       persistent-others = [ "/Users/${vars.username}/Downloads" ];
     };

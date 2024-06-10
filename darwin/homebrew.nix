@@ -23,7 +23,6 @@
       "blackhole-16ch"
       "motrix"
       "alfred"
-      "anytype"
       "lulu"
       "shottr"
     ] ++ lib.optionals (vars.isCasualProfile == true) [
