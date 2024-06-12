@@ -21,6 +21,7 @@
         eamodio.gitlens
         jnoortheen.nix-ide
         golang.go
+        zxh404.vscode-proto3
       ])
       ++ lib.optionals (vars.isCasualProfile == true) (
         with pkgs.vscode-marketplace; [
@@ -37,6 +38,7 @@
       "terminal.integrated.scrollback" = 50000;
       "terminal.integrated.persistentSessionScrollback" = 0;
       "editor.inlineSuggest.suppressSuggestions" = true;
+      "editor.wordWrap" = "on";
     };
   };
 }

@@ -15,6 +15,8 @@
     systemPackages = with pkgs; [
       neofetch
       go
+      nodejs_20
+
       ripgrep
       eza
 
@@ -61,19 +63,20 @@
     };
 
     NSGlobalDomain = {
-      # fast key repeat in terminal
       ApplePressAndHoldEnabled = false;
       InitialKeyRepeat = 25;
       KeyRepeat = 1;
 
-      # typing & spelling
       NSAutomaticCapitalizationEnabled = false;
       NSAutomaticDashSubstitutionEnabled = false;
       NSAutomaticPeriodSubstitutionEnabled = false;
       NSAutomaticQuoteSubstitutionEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
 
-      # clock
+      "com.apple.swipescrolldirection" = false;
+
+      AppleInterfaceStyle = "Dark";
+      AppleInterfaceStyleSwitchesAutomatically = false;
       AppleICUForce24HourTime = true;
     };
 
