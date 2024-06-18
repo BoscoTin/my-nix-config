@@ -30,15 +30,16 @@
       );
 
     userSettings = {
+      "editor.inlineSuggest.suppressSuggestions" = true;
+      "editor.semanticHighlighting.enabled" = true;
+      "editor.wordWrap" = "on";
+      "explorer.confirmDelete" = false;
+      "terminal.integrated.fontFamily" = "'MesloLGS NF', 'Source Code Pro', 'FiraCode Nerd Font Mono'";
+      "terminal.integrated.persistentSessionScrollback" = 0;
+      "terminal.integrated.scrollback" = 50000;
       "workbench.colorTheme" = "Catppuccin Macchiato";
       "workbench.iconTheme" = "catppuccin-macchiato";
       "workbench.editor.wrapTabs" = true;
-      "editor.semanticHighlighting.enabled" = true;
-      "terminal.integrated.fontFamily" = "'MesloLGS NF', 'Source Code Pro', 'FiraCode Nerd Font Mono'";
-      "terminal.integrated.scrollback" = 50000;
-      "terminal.integrated.persistentSessionScrollback" = 0;
-      "editor.inlineSuggest.suppressSuggestions" = true;
-      "editor.wordWrap" = "on";
     };
   };
 }
