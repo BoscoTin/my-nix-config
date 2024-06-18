@@ -12,9 +12,33 @@ Many config not cover by nix (sigh)
     - battery show percentage
 - Wallpaper > Bigsur graphic
 
-## Openvanilla
+## Apps
 
-System settings > Input method > + > Openvanilla
+<details>
+  <summary>Open vanilla</summary>
+  
+    System settings > Input method > + > Openvanilla
+</details>
+
+<details>
+  <summary>Blackhole</summary>
+
+    1. Install Blackhole audio plugin.
+
+    2. Open audio midi app
+
+    3. Make a new aggregate device
+
+    4. Add blackhole input and your mic (let’s say your MacBook mic)
+
+    5. Make a new multi output
+
+    6. Add blackhole and your speaker (macs speaker)
+
+    7. Quit the Audio MIDI app
+
+    8. Cmd click on sound module in control center and change output and input to the new output and input we just made.
+</details>
 
 ## Finder sidebar
 
