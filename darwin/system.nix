@@ -16,6 +16,7 @@
       neofetch
       go
       nodejs_20
+      pnpm
 
       ripgrep
       eza
@@ -57,7 +58,6 @@
         "/System/Applications/Notes.app/"
         "/Applications/Arc.app/"
         "/Users/bosco/Applications/Home Manager Apps/Visual Studio Code.app"
-        "/run/current-system/Applications/Hoppscotch.app"
       ];
       persistent-others = [ "/Users/${vars.username}/Downloads" ];
     };
