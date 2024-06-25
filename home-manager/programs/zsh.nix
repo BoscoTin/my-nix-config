@@ -21,12 +21,6 @@
       bindkey '^E' autosuggest-accept
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
       HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
-
-      # user profile of nix (home manager)
-      export PATH="/etc/profiles/per-user/${vars.username}/bin:$PATH"
-      
-      # system profile of nix (nix-darwin)
-      export PATH="/run/current-system/sw/bin:$PATH"
     '';
 
     shellAliases = {

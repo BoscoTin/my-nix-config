@@ -10,19 +10,6 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
-    # ensure add path in shell
-    # https://github.com/LnL7/nix-darwin/issues/922
-    systemPackages = with pkgs; [
-      neofetch
-      go
-      nodejs_20
-      pnpm
-
-      ripgrep
-      eza
-
-      hoppscotch
-    ];
   };
 
   nix.settings.trusted-users = [vars.username];
