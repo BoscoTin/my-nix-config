@@ -25,6 +25,8 @@
       "alfred"
       "lulu"
       "shottr"
+
+      "docker"
     ] ++ lib.optionals (vars.isCasualProfile == true) [
       # chat
       "discord"

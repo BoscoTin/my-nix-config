@@ -40,6 +40,13 @@ Many config not cover by nix (sigh)
     8. Cmd click on sound module in control center and change output and input to the new output and input we just made.
 </details>
 
+<details>
+  <summary>Docker</summary>
+
+  Launcher > Open Docker app > accept
+  Tune resource setting to lesser
+</details>
+
 ## Finder sidebar
 
 Open finder > Move to ~/Users/user > File > Add to sidebar
