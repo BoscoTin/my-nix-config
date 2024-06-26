@@ -58,3 +58,9 @@ Remove recents
 Terminal > Preferences > Profiles > Colors > Import... > `darwin/extras/Macchiato.terminal`
 
 Change font after import: `MesloLGS...`
+
+## Ensure user default shell is zsh
+
+Some settings cannot be applied when default shell not zsh, can force change by
+
+```chsh -s /bin/zsh```

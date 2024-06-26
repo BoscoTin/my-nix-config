@@ -17,7 +17,7 @@
   home = {
     username = vars.username;
     homeDirectory = "/Users/${vars.username}";
-    stateVersion = "23.11";
+    stateVersion = "24.05";
     # if problem occurs, run rm -rf /Applications/Home Manager Trampolines
     activation = {
       # https://github.com/LnL7/nix-darwin/issues/214#issuecomment-2050027696
@@ -32,6 +32,12 @@
         ${pkgs.rsync}/bin/rsync $rsyncArgs "$apps_source/" "$app_target"
       '';
     };
+    sessionPath = [
+      "$HOME/.local/bin"
+      "/usr/local/bin"
+      "/run/current-system/sw/bin"
+      "/etc/profiles/per-user/${vars.username}/bin:$PATH"
+    ];
     packages = with pkgs; [
       go
       nodejs

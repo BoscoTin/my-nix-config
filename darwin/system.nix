@@ -2,19 +2,17 @@
 {
   users.users.${vars.username} = {
     home = "/Users/${vars.username}";
-    shell = "${pkgs.zsh}/bin/zsh";
+    shell = pkgs.zsh;
   };
 
   networking.hostName = "00-${vars.username}-${vars.deviceName}";
   networking.localHostName = "00-${vars.hostProfile}-${vars.deviceName}";
 
   environment = {
-    shells = with pkgs; [ zsh ];
-
     systemPackages = with pkgs; [
-      neofetch
       ripgrep
       eza
+      neofetch
     ];
   };
 

@@ -7,11 +7,13 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
+  
     initExtraBeforeCompInit = ''
       # p10k instant prompt
       P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
       [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
     '';
+
     initExtra = ''
       # make sure brew is on the path for aarch64-darwin
       if [[ $(uname -m) == 'arm64' ]]; then
