@@ -1,10 +1,6 @@
 { pkgs, lib, ... }:
 
 {
-  environment.shells = [
-    pkgs.zsh
-  ];
-
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
   };

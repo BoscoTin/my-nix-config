@@ -33,14 +33,9 @@
       '';
     };
     packages = with pkgs; [
-      neofetch
       go
       nodejs
       pnpm
-
-      ripgrep
-      eza
-
       hoppscotch
     ];
   };

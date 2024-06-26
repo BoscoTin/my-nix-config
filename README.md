@@ -17,6 +17,11 @@ Curreny available on macos (aarch64-darwin / x86_64-darwin)
 - clone this config repo
 
 ```
+# macos specific
+xcode-select --install
+softwareupdate --install-rosetta
+
+# setup nix with config
 sh <(curl -L https://nixos.org/nix/install)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 nix run nixpkgs#git --extra-experimental-features "nix-command flakes" -- clone https://github.com/BoscoTin/my-nix-config.git

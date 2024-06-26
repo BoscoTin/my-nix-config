@@ -10,6 +10,12 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
+
+    systemPackages = with pkgs; [
+      neofetch
+      ripgrep
+      eza
+    ];
   };
 
   nix.settings.trusted-users = [vars.username];
