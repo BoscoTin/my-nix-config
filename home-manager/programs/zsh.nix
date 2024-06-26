@@ -21,6 +21,8 @@
       bindkey '^E' autosuggest-accept
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
       HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+
+      neofetch
     '';
 
     shellAliases = {
