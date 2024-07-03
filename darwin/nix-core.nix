@@ -1,13 +1,14 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, vars, ... }:
 
 {
-  nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-  };
-
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    trusted-users = [vars.username];
+  };
 
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;

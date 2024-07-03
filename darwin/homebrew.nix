@@ -25,6 +25,7 @@
       "alfred"
       "lulu"
       "shottr"
+      "jordanbaird-ice"
 
       "docker"
     ] ++ lib.optionals (vars.isCasualProfile == true) [

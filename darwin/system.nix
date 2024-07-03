@@ -1,12 +1,18 @@
 { pkgs, vars, ... }:
 {
-  users.users.${vars.username} = {
-    home = "/Users/${vars.username}";
-    shell = pkgs.zsh;
+  system.stateVersion = 4; # keep unchanged
+
+  users.users = {
+    ${vars.username} = {
+      home = "/Users/${vars.username}";
+      shell = pkgs.zsh;
+    };  
   };
 
-  networking.hostName = "00-${vars.username}-${vars.deviceName}";
-  networking.localHostName = "00-${vars.hostProfile}-${vars.deviceName}";
+  networking = {
+    hostName = "00-${vars.username}-${vars.deviceName}";
+    localHostName = "00-${vars.hostProfile}-${vars.deviceName}";
+  };
 
   environment = {
     systemPackages = with pkgs; [
@@ -16,18 +22,14 @@
     ];
   };
 
-  nix.settings.trusted-users = [vars.username];
-
-  fonts.fontDir = {
-    enable = true;
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      meslo-lgs-nf
+      source-code-pro
+      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    ];
   };
-  fonts.fonts = with pkgs; [
-    meslo-lgs-nf
-    source-code-pro
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
-  ];
-
-  system.stateVersion = 4;
 
   # mac osx settings
   security.pam.enableSudoTouchIdAuth = true;

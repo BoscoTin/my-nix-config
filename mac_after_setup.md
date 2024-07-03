@@ -47,6 +47,18 @@ Many config not cover by nix (sigh)
   Tune resource setting to lesser
 </details>
 
+<details>
+  <summary>Shottr</summary>
+
+  Settings > screenshot > keyboard shortcuts
+  Turn off all screenshot shortcuts
+
+  Then open shottr.app
+  set command + shift + 3 > full area
+  set command + shift + 4 > area screenshot
+  set command + shift + 5 > scroll screenshot
+</details>
+
 ## Finder sidebar
 
 Open finder > Move to ~/Users/user > File > Add to sidebar
