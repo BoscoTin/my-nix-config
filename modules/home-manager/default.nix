@@ -11,6 +11,7 @@
     ./programs/git
     ./programs/ssh.nix
     ./programs/vscode.nix
+    ./programs/zoxide.nix
     ./programs/zsh.nix
   ];
 
@@ -36,13 +37,7 @@
       "$HOME/.local/bin"
       "/usr/local/bin"
       "/run/current-system/sw/bin"
-      "/etc/profiles/per-user/${vars.username}/bin:$PATH"
-    ];
-    packages = with pkgs; [
-      go
-      nodejs
-      pnpm
-      hoppscotch
+      "/etc/profiles/per-user/${vars.username}/bin"
     ];
   };
 

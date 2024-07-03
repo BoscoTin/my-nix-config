@@ -18,13 +18,14 @@ in
       ./nix-core.nix
       ./system.nix
       ./homebrew.nix
+      ../modules/cli.nix
 
       home-manager.darwinModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = specialArgs;
-        home-manager.users.${vars.username} = import ../home-manager;
+        home-manager.users.${vars.username} = import ../modules/home-manager;
       }
     ];
   };

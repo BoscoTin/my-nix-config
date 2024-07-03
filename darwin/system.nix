@@ -14,14 +14,6 @@
     localHostName = "00-${vars.hostProfile}-${vars.deviceName}";
   };
 
-  environment = {
-    systemPackages = with pkgs; [
-      ripgrep
-      eza
-      neofetch
-    ];
-  };
-
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
