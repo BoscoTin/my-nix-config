@@ -59,6 +59,12 @@ Many config not cover by nix (sigh)
   set command + shift + 5 > scroll screenshot
 </details>
 
+<details>
+  <summary>Karabiner</summary>
+
+  Add extras/karabiner json to custom rules in Karabiner Elements
+</details>
+
 ## Finder sidebar
 
 Open finder > Move to ~/Users/user > File > Add to sidebar

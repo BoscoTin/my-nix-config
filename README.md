@@ -8,6 +8,14 @@ Curreny available on macos (aarch64-darwin / x86_64-darwin)
 
 `home-manager` contains config from `home-manager`, refer to https://home-manager-options.extranix.com
 
+## Macos pre-requisite
+
+### Google IME
+
+brew not working, nixpkgs has no suitable package.
+
+https://www.google.co.jp/ime/
+
 ## Guide
 
 1. Init
