@@ -63,6 +63,9 @@ Many config not cover by nix (sigh)
   <summary>Karabiner</summary>
 
   Add extras/karabiner json to custom rules in Karabiner Elements
+
+  For custom keyboard, switch the modifiers key one by one in karabiner elements > basic > devices > modifiers
+  e.g. ikki-68, which in macos swap to macos config = [option, command, ctrl], in karabiner it need left-command -> left-option & left-option -> left-command
 </details>
 
 ## Finder sidebar
