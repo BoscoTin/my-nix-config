@@ -12,5 +12,6 @@
     go
     nodejs
     pnpm
+    pulumi
   ];
 }

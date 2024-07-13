@@ -27,7 +27,7 @@
       "shottr"
       "jordanbaird-ice"
 
-      "docker"
+      "orbstack"
     ] ++ lib.optionals (vars.isCasualProfile == true) [
       # chat
       "discord"
