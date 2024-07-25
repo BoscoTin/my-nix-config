@@ -8,10 +8,12 @@
     fd
     zip
     lz4
+    ctop
 
     go
     nodejs
     pnpm
     pulumi
+    golangci-lint
   ];
 }
