@@ -30,6 +30,7 @@
         isCasualProfile = true; # whether to use work profile or not
         hostProfile = "cerulean"; # profile name, keep same with makefile
         deviceName = "mba"; # used in localHostName / hostName
+        system = "aarch64-darwin";
       };
     in {
       darwinConfigurations = (

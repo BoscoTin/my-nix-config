@@ -37,11 +37,18 @@
       orientation = "bottom";
       mru-spaces = false;
       show-recents = false;
-      persistent-apps = [
+      persistent-apps = if vars.isCasualProfile then [
         "/System/Applications/Launchpad.app/"
         "/Applications/Discord.app/"
         "/Applications/Telegram.app/"
         "/Applications/Signal.app/"
+        "/System/Applications/Notes.app/"
+        "/Applications/Arc.app/"
+        "/Users/bosco/Applications/Home Manager Apps/Visual Studio Code.app"
+      ] else [
+        "/System/Applications/System Settings.app/"
+        "/System/Applications/Launchpad.app/"
+        "/System/Applications/Utilities/Terminal.app/"
         "/System/Applications/Notes.app/"
         "/Applications/Arc.app/"
         "/Users/bosco/Applications/Home Manager Apps/Visual Studio Code.app"
