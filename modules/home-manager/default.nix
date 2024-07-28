@@ -9,6 +9,7 @@
 {
   imports = [
     ./programs/git
+    ./programs/direnv.nix
     ./programs/ssh.nix
     ./programs/vscode.nix
     ./programs/zoxide.nix
