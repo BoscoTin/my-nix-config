@@ -5,7 +5,6 @@
   vars,
   ...
 }: {
-
   programs.git = {
     enable = true;
     lfs.enable = true;
@@ -20,6 +19,15 @@
     ignores = [
       ".DS_Store"
     ];
+
+    # pager
+    delta = {
+      enable = true;
+      options = {
+        side-by-side = true;
+        navigate = true;
+      };
+    };
 
     extraConfig = {
       push.autoSetupRemote = true;

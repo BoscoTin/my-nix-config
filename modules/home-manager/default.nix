@@ -39,6 +39,10 @@
       "/run/current-system/sw/bin"
       "/etc/profiles/per-user/${vars.username}/bin"
     ];
+    sessionVariables = {
+      # enable scrolling in git diff
+      DELTA_PAGER = "less -R --mouse";
+    };
   };
 
   # Let Home Manager install and manage itself.
