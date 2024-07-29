@@ -9,7 +9,7 @@
     enable = true;
     lfs.enable = true;
 
-    userName = vars.username;
+    userName = vars.gitUsername;
     userEmail = vars.useremail;
 
     includes = [] ++ lib.optionals (vars.isCasualProfile == true) [

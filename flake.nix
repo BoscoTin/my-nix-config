@@ -26,6 +26,7 @@
   }: let
       vars = {
         username = "bosco"; # system username
+        gitUsername = "bosco"; # git username, used in default config
         useremail = "boscotang98@gmail.com"; # system user email
         isCasualProfile = true; # whether to use work profile or not
         hostProfile = "cerulean"; # profile name, keep same with makefile
