@@ -13,7 +13,7 @@
     go
     nodejs
     pnpm
-    pulumi
     golangci-lint
+    mockgen
   ];
 }

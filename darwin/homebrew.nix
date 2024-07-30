@@ -19,20 +19,23 @@
       "brave-browser"
       "arc"
 
-      # others
-      "blackhole-16ch"
-      "motrix"
-      "alfred"
-      "lulu"
+      # utilsX
       "shottr"
       "jordanbaird-ice"
 
-      "orbstack"
+      # dev
+      "docker"
     ] ++ lib.optionals (vars.isCasualProfile == true) [
       # chat
       "discord"
       "telegram"
       "signal"
+
+      # others
+      "blackhole-16ch"
+      "motrix"
+      "alfred"
+      "lulu"
     ];
   };
 }
