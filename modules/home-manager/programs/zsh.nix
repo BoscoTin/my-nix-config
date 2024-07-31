@@ -32,6 +32,7 @@
       ll = "eza -bhl --icons --group-directories-first"; # long list
       la = "eza -abhl --icons --group-directories-first"; # all list
       lt = "eza --tree --level=2 --icons"; # tree
+      k = "kubectl";
     };
 
     plugins = with pkgs; [

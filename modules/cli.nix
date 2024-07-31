@@ -7,8 +7,8 @@
     neofetch
     fd
     zip
-    lz4
     ctop
+    kubectl
 
     go
     golangci-lint
