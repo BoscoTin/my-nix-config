@@ -11,8 +11,6 @@
     ctop
 
     go
-    nodejs
-    pnpm
     golangci-lint
     mockgen
   ];

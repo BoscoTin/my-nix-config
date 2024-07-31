@@ -20,6 +20,7 @@
     fontDir.enable = true;
     fonts = with pkgs; [
       meslo-lgs-nf
+    ] ++ lib.optionals (vars.isCasualProfile == true) [
       source-code-pro
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];

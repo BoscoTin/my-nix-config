@@ -9,12 +9,14 @@ build:
 		rm ~/.vscode/extensions/extensions.json; \
 	fi
 	if [ -f modules/home-manager/programs/git/users/notshown/ns_*.nix ]; then \
-	  cp modules/home-manager/programs/git/users/notshown/ns_*.nix modules/home-manager/programs/git/users; \
-	  git add modules/home-manager/programs/git/users/*.nix; \
+	  	cp modules/home-manager/programs/git/users/notshown/ns_*.nix modules/home-manager/programs/git/users; \
+	 	git add modules/home-manager/programs/git/users/*.nix; \
 	fi
 	nix build ".#darwinConfigurations.${PROFILE}.system" --extra-experimental-features "nix-command flakes"
 	./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#${PROFILE}"
-	rm modules/home-manager/programs/git/users/ns_*.nix
+	if [ -f modules/home-manager/programs/git/users/notshown/ns_*.nix ]; then \
+		rm modules/home-manager/programs/git/users/ns_*.nix; \
+	fi
 
 after_run:
 	echo "For macOS system settings, please logout > login$'\n"
