@@ -20,6 +20,10 @@
       ".DS_Store"
     ];
 
+    aliases = {
+      prettylog = "log --pretty='%C(Yellow)%h    %C(reset)%ai%x09%C(Green)%an %C(Blue)(%ae)%C(reset): %s'  ";
+    };
+
     # pager
     delta = {
       enable = true;

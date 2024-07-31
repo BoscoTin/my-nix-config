@@ -9,6 +9,7 @@
     zip
     ctop
     kubectl
+    git-trim
 
     go
     golangci-lint
