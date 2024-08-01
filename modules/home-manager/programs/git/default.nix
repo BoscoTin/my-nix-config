@@ -21,7 +21,7 @@
     ];
 
     aliases = {
-      prettylog = "log --pretty='%C(Yellow)%h    %C(reset)%ai%x09%C(Green)%an %C(Blue)(%ae)%C(reset): %s'  ";
+      prettylog = "log --pretty=format:'%C(Yellow)%h%x09%Creset%ai%x09%Cgreen%an %Cblue(%ae)%Creset: %s'";
     };
 
     # pager

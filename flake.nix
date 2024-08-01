@@ -2,7 +2,7 @@
   description = "bosco configuration on nix ecosystem";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
 
     darwin = {
       url = "github:lnl7/nix-darwin";

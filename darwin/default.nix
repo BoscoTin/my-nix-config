@@ -2,6 +2,7 @@
 
 let
   system = vars.system;
+  hostPlatform = system;
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;
