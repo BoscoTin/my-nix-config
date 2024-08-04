@@ -9,6 +9,7 @@
     zip
     ctop
     kubectl
+    kubectx
     git-trim
 
     go

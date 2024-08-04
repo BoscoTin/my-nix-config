@@ -36,7 +36,7 @@
       "explorer.confirmDelete" = false;
       "terminal.integrated.fontFamily" = "'MesloLGS NF', 'Source Code Pro', 'FiraCode Nerd Font Mono'";
       "terminal.integrated.persistentSessionScrollback" = 0;
-      "terminal.integrated.enableMultilinePasteWarning" = false;
+      "terminal.integrated.enableMultiLinePasteWarning" = false;
       "terminal.integrated.scrollback" = 50000;
       "workbench.colorTheme" = "Catppuccin Macchiato";
       "workbench.iconTheme" = "catppuccin-macchiato";
