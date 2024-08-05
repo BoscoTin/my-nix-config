@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
     ripgrep
     eza
-    neofetch
+    fastfetch
     fd
     zip
     ctop
