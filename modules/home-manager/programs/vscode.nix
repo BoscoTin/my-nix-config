@@ -41,6 +41,9 @@
       "workbench.colorTheme" = "Catppuccin Macchiato";
       "workbench.iconTheme" = "catppuccin-macchiato";
       "workbench.editor.wrapTabs" = true;
+      "search.exclude" = {
+        "**/.direnv" = true;
+      };
     };
   };
 }
