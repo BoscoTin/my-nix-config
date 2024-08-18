@@ -22,6 +22,7 @@
         jnoortheen.nix-ide
         golang.go
         zxh404.vscode-proto3
+        esbenp.prettier-vscode
       ])
       ++ lib.optionals (vars.isCasualProfile == true) (
         with pkgs.vscode-marketplace; [
