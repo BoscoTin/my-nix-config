@@ -45,6 +45,10 @@
       "search.exclude" = {
         "**/.direnv" = true;
       };
+      "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      "[go]" = {
+        "editor.defaultFormatter" = "golang.go";
+      };
     };
   };
 }

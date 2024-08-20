@@ -5,9 +5,6 @@ init:
 	ssh-keygen -t ed25519 -C "${EMAIL}" -f ~/.ssh/id_ed25519_default
 
 build:
-	if [ -f ~/.vscode/extensions/extensions.json ]; then \
-		rm ~/.vscode/extensions/extensions.json; \
-	fi
 	if [ -f modules/home-manager/programs/git/users/notshown/ns_*.nix ]; then \
 	  	cp modules/home-manager/programs/git/users/notshown/ns_*.nix modules/home-manager/programs/git/users; \
 	 	git add modules/home-manager/programs/git/users/*.nix; \

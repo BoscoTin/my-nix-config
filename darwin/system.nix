@@ -35,7 +35,7 @@
       tilesize = 20;
       magnification = true;
       largesize = 48;
-      orientation = "bottom";
+      orientation = if vars.isCasualProfile then "bottom" else "right";
       mru-spaces = false;
       show-recents = false;
       persistent-apps = if vars.isCasualProfile then [

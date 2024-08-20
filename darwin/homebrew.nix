@@ -19,9 +19,10 @@
       "brave-browser"
       "arc"
 
-      # utilsX
+      # utils
       "shottr"
       "jordanbaird-ice"
+      "raycast"
 
       # dev
       "docker"
@@ -34,7 +35,6 @@
       # others
       "blackhole-16ch"
       "motrix"
-      "alfred"
       "lulu"
     ];
   };
