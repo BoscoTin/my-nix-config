@@ -22,6 +22,9 @@
 
     aliases = {
       prettylog = "log --pretty=format:'%C(Yellow)%h%x09%Creset%ai%x09%Cgreen%an %Cblue(%ae)%Creset: %s'";
+      undo = "reset --soft HEAD^";
+      cancel = "reset --hard HEAD^";
+      onemore = "commit -a --amend --no-edit";
     };
 
     # pager

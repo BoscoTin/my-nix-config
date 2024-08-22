@@ -31,6 +31,7 @@
       );
 
     userSettings = {
+      "editor.accessibilitySupport" = "off";
       "editor.inlineSuggest.suppressSuggestions" = true;
       "editor.semanticHighlighting.enabled" = true;
       "editor.wordWrap" = "on";
