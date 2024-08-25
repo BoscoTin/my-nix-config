@@ -14,6 +14,7 @@
     ./programs/vscode.nix
     ./programs/zoxide.nix
     ./programs/zsh.nix
+    ./programs/k9s.nix
   ];
 
   home = {
@@ -29,8 +30,11 @@
     sessionVariables = {
       # enable scrolling in git diff
       DELTA_PAGER = "less -R --mouse";
+      TERM = "xterm-256color";
     };
   };
+
+  xdg.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

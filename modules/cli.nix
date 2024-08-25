@@ -12,6 +12,9 @@
       awscli2
       kubectl
       kubectx
+      teleport_15
+      k9s
+      stern
 
       go
       golangci-lint
