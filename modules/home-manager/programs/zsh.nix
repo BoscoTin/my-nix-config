@@ -7,25 +7,6 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
-  
-    initExtraBeforeCompInit = ''
-      # p10k instant prompt
-      P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
-      [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
-    '';
-
-    initExtra = ''
-      # make sure brew is on the path for aarch64-darwin
-      if [[ $(uname -m) == 'arm64' ]]; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-      fi
-
-      bindkey '^E' autosuggest-accept
-      ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
-
-      fastfetch
-    '';
 
     shellAliases = {
       ls = "eza --icons always"; # default view
@@ -57,5 +38,26 @@
         file = "themes/cappuchin_mocha-zsh-syntax-highlighting.zsh";
       }
     ];
+  
+    initExtraBeforeCompInit = ''
+      # p10k instant prompt
+      P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
+      [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
+    '';
+
+    initExtra = ''
+      # make sure brew is on the path for aarch64-darwin
+      if [[ $(uname -m) == 'arm64' ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      fi
+
+      bindkey '^E' autosuggest-accept
+      ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+    '';
+
+    profileExtra = ''
+      fastfetch
+    '';
   };
 }
