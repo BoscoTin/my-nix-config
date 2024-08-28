@@ -45,14 +45,14 @@
         "/Applications/Signal.app/"
         "/System/Applications/Notes.app/"
         "/Applications/Arc.app/"
-        "/Users/bosco/Applications/Home Manager Apps/Visual Studio Code.app"
+        "/Users/${vars.username}/Applications/Home Manager Apps/Visual Studio Code.app"
       ] else [
         "/System/Applications/System Settings.app/"
         "/System/Applications/Launchpad.app/"
         "/System/Applications/Utilities/Terminal.app/"
         "/System/Applications/Notes.app/"
         "/Applications/Arc.app/"
-        "/Users/bosco/Applications/Home Manager Apps/Visual Studio Code.app"
+        "/Users/${vars.username}/Applications/Home Manager Apps/Visual Studio Code.app"
       ];
       persistent-others = [ "/Users/${vars.username}/Downloads" ];
     };
