@@ -33,9 +33,8 @@
       "signal"
 
       # others
-      "blackhole-16ch"
       "motrix"
-      "lulu"
+      "surfshark"
     ];
   };
 }
