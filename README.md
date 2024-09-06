@@ -32,8 +32,15 @@ softwareupdate --install-rosetta
 # setup nix with config
 sh <(curl -L https://nixos.org/nix/install)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-nix run nixpkgs#git --extra-experimental-features "nix-command flakes" -- clone https://github.com/BoscoTin/my-nix-config.git
 ```
+
+Then start a new terminal session, run below
+
+```
+nix run nixpkgs#git --extra-experimental-features "nix-command flakes" -- clone git@github.com:BoscoTin/my-nix-config.git
+```
+
+Then cd to cloned repository
 
 2. setup required files
 
