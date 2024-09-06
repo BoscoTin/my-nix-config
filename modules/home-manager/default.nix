@@ -15,6 +15,8 @@
     ./programs/zoxide.nix
     ./programs/zsh.nix
     ./programs/k9s.nix
+  ] ++ lib.optionals (vars.isCasualProfile == true) [
+    ./programs/karabiner.nix
   ];
 
   home = {

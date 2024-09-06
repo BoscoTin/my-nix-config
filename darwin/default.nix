@@ -1,4 +1,4 @@
-{ inputs, nixpkgs, home-manager, darwin, vars, ... }:
+{ lib, inputs, nixpkgs, home-manager, darwin, vars, ... }:
 
 let
   system = vars.system;
@@ -28,6 +28,9 @@ in
         home-manager.extraSpecialArgs = specialArgs;
         home-manager.users.${vars.username} = import ../modules/home-manager;
       }
-    ];
+    ] ++ lib.optionals (vars.isCasualProfile == true) [
+      # work machine ususally banned, see issue https://github.com/pqrs-org/Karabiner-Elements/issues/3760
+      ./karabiner.nix
+    ];    
   };
 }

@@ -2,8 +2,6 @@
 {
   system.stateVersion = 4; # keep unchanged
 
-  services.karabiner-elements.enable = true;
-
   users.users = {
     ${vars.username} = {
       home = "/Users/${vars.username}";
