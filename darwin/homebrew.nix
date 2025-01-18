@@ -16,12 +16,10 @@
 
       # browsers
       "firefox"
-      "brave-browser"
       "arc"
 
       # utils
       "shottr"
-      "jordanbaird-ice"
       "raycast"
 
       # dev

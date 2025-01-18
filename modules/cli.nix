@@ -15,6 +15,7 @@
       teleport_15
       k9s
       stern
+      terraform
 
       go
       golangci-lint
