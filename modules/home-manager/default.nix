@@ -33,6 +33,7 @@
       # enable scrolling in git diff
       DELTA_PAGER = "less -R --mouse";
       TERM = "xterm-256color";
+      PATH = "$GOPATH/bin:$PATH";
     };
   };
 

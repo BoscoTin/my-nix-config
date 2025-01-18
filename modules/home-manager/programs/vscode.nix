@@ -50,6 +50,9 @@
       "[go]" = {
         "editor.defaultFormatter" = "golang.go";
       };
+      "[terraform]" = {
+        "editor.defaultFormatter" = "hashicorp.terraform";
+      };
     };
   };
 }
