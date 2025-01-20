@@ -1,16 +1,17 @@
 {
-  description = "bosco configuration on nix ecosystem";
+  description = "personal config based on nixpkgs & home manager";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    darwin = {
+    nix-darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -20,25 +21,26 @@
   outputs = inputs @ { 
     self,
     nixpkgs,
-    darwin,
+    nix-darwin,
     home-manager,
     ...
   }: let
       vars = {
-        username = "bosco"; # system username
-        gitUsername = "bosco"; # git username, used in default config
-        useremail = "boscotang98@gmail.com"; # system user email
-        isCasualProfile = true; # whether to use work profile or not
-        hostProfile = "cerulean"; # profile name, keep same with makefile
-        deviceName = "mba"; # used in localHostName / hostName
-        system = "x86_64-darwin";
+        hmUsername = "bosco";
+        defaultGitUsername = "bosco";
+        defaultGitEmail = "boscotang98@gmail.com";
       };
+      modules = import ./all-modules.nix { inherit (nixpkgs) lib; };
     in {
       darwinConfigurations = (
-        import ./darwin {
-          inherit (nixpkgs) lib;
-          inherit inputs nixpkgs home-manager darwin vars;
-        }
+        mortis = nix-darwin.lib.darwinSystem {
+          inherit inputs;
+          system = "x86_64-darwin";
+          modules = [
+            ./hosts/mortis
+            home-manager.darwinModules.home-manager
+          ] ++ modules.darwin;
+        };
       );
     };
 }

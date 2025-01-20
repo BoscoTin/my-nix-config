@@ -24,7 +24,7 @@
       }
       {
         name = "p10k-config";
-        src = ../../../extras/p10k;
+        src = ./;
         file = "p10k.zsh";
       }
       {
@@ -56,8 +56,8 @@
       HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
     '';
 
-    profileExtra = ''
-      fastfetch
-    '';
+    # profileExtra = ''
+    #   fastfetch
+    # '';
   };
 }

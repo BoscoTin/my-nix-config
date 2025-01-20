@@ -21,6 +21,7 @@ in
       ./homebrew.nix
       ../modules/cli.nix
 
+      # TODO: search these configs how to apply
       home-manager.darwinModules.home-manager
       {
         home-manager.useGlobalPkgs = true;

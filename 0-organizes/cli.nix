@@ -21,7 +21,7 @@
       golangci-lint
       mockgen
     ]
-  ) ++ lib.optionals (vars.system != "x86_64-darwin") (
+  ) ++ lib.optionals (pkgs.system != "x86_64-darwin") (
     with pkgs; [
       git-trim
     ]
