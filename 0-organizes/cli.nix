@@ -16,10 +16,8 @@
       k9s
       stern
       terraform
-
-      go
-      golangci-lint
-      mockgen
+      d2
+      jq
     ]
   ) ++ lib.optionals (pkgs.system != "x86_64-darwin") (
     with pkgs; [
