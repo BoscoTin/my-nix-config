@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nix-darwin = {
-      url = "github:lnl7/nix-darwin";
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -30,11 +30,14 @@
         defaultGitUsername = "bosco";
         defaultGitMail = "boscotang98@gmail.com";
       };
+
       modules = import ./all-modules.nix { inherit (nixpkgs) lib; };
+
+      specialArgs = { inherit inputs vars; };
     in {
       darwinConfigurations = {
         mortis = nix-darwin.lib.darwinSystem {
-          inherit inputs vars;
+          inherit specialArgs;
           system = "x86_64-darwin";
           modules = [
             ./hosts/mortis

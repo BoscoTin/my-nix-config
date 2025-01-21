@@ -23,4 +23,8 @@
       PATH = "$GOPATH/bin:$PATH";
     };
   };
+
+  # todo: search on why cannot put in mortis
+  xdg.enable = true;
+  programs.ssh.enable = true;
 }

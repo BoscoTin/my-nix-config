@@ -6,6 +6,8 @@ init:
 
 build:
 	nix build ".#darwinConfigurations.${PROFILE}.system" --extra-experimental-features "nix-command flakes"
+
+switch:
 	./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#${PROFILE}"
 
 after_run:
