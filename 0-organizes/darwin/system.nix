@@ -1,28 +1,5 @@
 { pkgs, vars, ... }:
 {
-  system.stateVersion = 4; # keep unchanged
-
-  users.users = {
-    ${vars.username} = {
-      home = "/Users/${vars.username}";
-      shell = pkgs.zsh;
-    };  
-  };
-
-  networking = {
-    hostName = "00-${vars.username}-${vars.deviceName}";
-    localHostName = "00-${vars.hostProfile}-${vars.deviceName}";
-  };
-
-  fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      meslo-lgs-nf
-    ] ++ lib.optionals (vars.isCasualProfile == true) [
-      source-code-pro
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
-    ];
-  };
 
   # mac osx settings
   security.pam.enableSudoTouchIdAuth = true;

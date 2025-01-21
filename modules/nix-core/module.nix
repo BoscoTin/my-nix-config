@@ -1,15 +1,18 @@
-{ pkgs, lib, vars, ... }:
+{ 
+  pkgs, 
+  lib, 
+  ... 
+}:
 
 {
   nix = {
     package = pkgs.nix;
     settings = {
       experimental-features = ["nix-command" "flakes"];
-      trusted-users = [vars.username];
     };
     gc = {
       automatic = lib.mkDefault true;
-      options = lib.mkDefault "--delete-older-than 7d";
+      options = lib.mkDefault "--delete-older-than 30d";
     };
   };
 

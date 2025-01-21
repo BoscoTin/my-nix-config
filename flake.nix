@@ -28,19 +28,19 @@
       vars = {
         hmUsername = "bosco";
         defaultGitUsername = "bosco";
-        defaultGitEmail = "boscotang98@gmail.com";
+        defaultGitMail = "boscotang98@gmail.com";
       };
       modules = import ./all-modules.nix { inherit (nixpkgs) lib; };
     in {
-      darwinConfigurations = (
+      darwinConfigurations = {
         mortis = nix-darwin.lib.darwinSystem {
-          inherit inputs;
+          inherit inputs vars;
           system = "x86_64-darwin";
           modules = [
             ./hosts/mortis
             home-manager.darwinModules.home-manager
           ] ++ modules.darwin;
         };
-      );
+      };
     };
 }

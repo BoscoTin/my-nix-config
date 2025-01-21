@@ -59,7 +59,7 @@ in
     lfs.enable = true;
 
     userName = vars.defaultGitUsername;
-    userEmail = vars.defaultGitEmail;
+    userEmail = vars.defaultGitMail;
 
     includes = includedUsers;
 
