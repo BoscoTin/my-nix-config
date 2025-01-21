@@ -18,9 +18,6 @@
       terraform
       d2
       jq
-
-      go
-      golangci-lint
     ]
   ) ++ lib.optionals (vars.system != "x86_64-darwin") (
     with pkgs; [
