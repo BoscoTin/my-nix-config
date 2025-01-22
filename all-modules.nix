@@ -1,60 +1,30 @@
 { lib }:
 
 let
-  inherit (builtins) readDir;
-
-  inherit (lib)
-    attrNames
-    concatMap
-    elemAt
-    filter
-    filterAttrs
-    pathExists
-    substring
-    toLower
-    foldl'
-    ;
-  inherit (lib.trivial) pipe;
-
   enumerateModules =
     {
       prefix ? "",
       basePath,
     }:
     let
-      childPaths = path: attrNames (filterAttrs (_: type: type == "directory") (readDir path));
-
-      isShardedCorrectly = path: elemAt path 0 == toLower (substring 0 2 (elemAt path 1));
-
-      mkPath = shard: package: [
-        shard
-        package
-        "${prefix}module.nix"
-      ];
-
-      modulesInShard = shard: map (mkPath shard) (childPaths (basePath + "/${shard}"));
-
-      renderPath = foldl' (path: elem: path + "/${elem}");
+      isModule = n: lib.strings.hasSuffix "${prefix}module.nix" n;
     in
-    pipe (childPaths basePath) [
-      (concatMap modulesInShard)
-      (filter isShardedCorrectly)
-      (map (renderPath basePath))
-      (filter pathExists)
-    ];
+    lib.filter (isModule)
+      (lib.filesystem.listFilesRecursive basePath);
 
-  allModules = enumerateModules { basePath = ./modules; };
+  baseModules = enumerateModules {
+    prefix = "base-";
+    basePath = ./modules;
+  };
 in
 {
-  darwin =
-    allModules
-    ++ enumerateModules {
+  darwin = baseModules ++ 
+    enumerateModules {
       prefix = "darwin-";
       basePath = ./modules;
     };
-  nixos =
-    allModules
-    ++ enumerateModules {
+  nixos = baseModules ++
+    enumerateModules {
       prefix = "nixos-";
       basePath = ./modules;
     };

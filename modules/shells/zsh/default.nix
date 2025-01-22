@@ -27,7 +27,7 @@
       }
       {
         name = "p10k-config";
-        src = ./;
+        src = ./extras;
         file = "p10k.zsh";
       }
       {

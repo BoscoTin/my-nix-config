@@ -31,39 +31,21 @@
         defaultGitMail = "boscotang98@gmail.com";
       };
 
-      modules = import ./all-modules.nix { inherit (nixpkgs) lib; };
+      moduleGroup = import ./all-modules.nix { inherit (nixpkgs) lib; };
 
-      specialArgs = { inherit inputs vars modules; };
-
-      # TODO: not apply overlay here
-      overlays = [
-        ({ pkgs, ... }: {
-          nixpkgs.config.allowUnfree = true;
-          nixpkgs.overlays = [
-            inputs.nix-vscode-extensions.overlays.default
-            (self: super: {
-              karabiner-elements = super.karabiner-elements.overrideAttrs (old: {
-                version = "14.13.0";
-                src = super.fetchurl {
-                  inherit (old.src) url;
-                  hash = "sha256-gmJwoht/Tfm5qMecmq1N6PSAIfWOqsvuHU8VDJY8bLw=";
-                };
-              });
-            })
-          ];
-        })
-      ];
+      specialArgs = { inherit vars; };
     in {
       darwinConfigurations = {
         mortis = nix-darwin.lib.darwinSystem {
-          inherit specialArgs;
+          inherit inputs specialArgs;
           system = "x86_64-darwin";
           modules = [
             ./hosts/mortis
             home-manager.darwinModules.home-manager
-          ] ++ modules.darwin
-            ++ overlays;
+          ] ++ moduleGroup.darwin;
         };
       };
+
+      hmModules = moduleGroup.home;
     };
 }
