@@ -1,19 +1,37 @@
-PROFILE=cerulean
-EMAIL=boscotang98@gmail.com
+include .env
 
-init:
+define before_nix_build
+	if [ -f ${GIT_SECRET_USERS_PATH}/*.nix ]; then cp ${GIT_SECRET_USERS_PATH}/*.nix ${NIX_GIT_USERS_PATH}; fi
+	git add ${NIX_GIT_USERS_PATH}/*.nix
+endef
+
+define after_nix_build
+	if [ -f ${NIX_GIT_USERS_PATH}/*.nix ]; then rm ${NIX_GIT_USERS_PATH}/*.nix; fi
+endef
+
+install_nix:
+	sh <(curl -L https://nixos.org/nix/install)
+
+install_darwin:
+	xcode-select --install
+	softwareupdate --install-rosetta
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+setup:
 	ssh-keygen -t ed25519 -C "${EMAIL}" -f ~/.ssh/id_ed25519_default
 
+cleanup:
+	$(after_nix_build)
+
 build:
-	if [ -f modules/home-manager/programs/git/users/notshown/ns_*.nix ]; then \
-	  	cp modules/home-manager/programs/git/users/notshown/ns_*.nix modules/home-manager/programs/git/users; \
-	 	git add modules/home-manager/programs/git/users/*.nix; \
-	fi
+	$(before_nix_build)
 	nix build ".#darwinConfigurations.${PROFILE}.system" --extra-experimental-features "nix-command flakes"
+	$(after_nix_build)
+
+switch:
+	$(before_nix_build)
 	./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#${PROFILE}"
-	if [ -f modules/home-manager/programs/git/users/notshown/ns_*.nix ]; then \
-		rm modules/home-manager/programs/git/users/ns_*.nix; \
-	fi
+	$(after_nix_build)
 
 after_run:
 	echo "For macOS system settings, please logout > login$'\n"

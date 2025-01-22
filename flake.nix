@@ -1,11 +1,12 @@
 {
-  description = "bosco configuration on nix ecosystem";
+  description = "personal config based on nixpkgs & home manager";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    darwin = {
-      url = "github:lnl7/nix-darwin";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -20,25 +21,49 @@
   outputs = inputs @ { 
     self,
     nixpkgs,
-    darwin,
+    nix-darwin,
     home-manager,
     ...
   }: let
       vars = {
-        username = "bosco"; # system username
-        gitUsername = "bosco"; # git username, used in default config
-        useremail = "boscotang98@gmail.com"; # system user email
-        isCasualProfile = true; # whether to use work profile or not
-        hostProfile = "cerulean"; # profile name, keep same with makefile
-        deviceName = "mba"; # used in localHostName / hostName
-        system = "x86_64-darwin";
+        username = "bosco";
+        defaultGitUsername = "bosco";
+        defaultGitMail = "boscotang98@gmail.com";
       };
+
+      moduleGroup = import ./all-modules.nix { inherit (nixpkgs) lib; };
+
+      specialArgs = { inherit vars; };
     in {
-      darwinConfigurations = (
-        import ./darwin {
-          inherit (nixpkgs) lib;
-          inherit inputs nixpkgs home-manager darwin vars;
-        }
-      );
+      darwinConfigurations = {
+        mortis = nix-darwin.lib.darwinSystem {
+          inherit inputs specialArgs;
+          system = "x86_64-darwin";
+          modules = [
+            ./hosts/mortis
+            home-manager.darwinModules.home-manager
+          ] ++ moduleGroup.darwin;
+        };
+
+        doloris = nix-darwin.lib.darwinSystem {
+          inherit inputs specialArgs;
+          system = "aarch64-darwin";
+          modules = [
+            ./hosts/doloris
+            home-manager.darwinModules.home-manager
+          ] ++ moduleGroup.darwin;
+        };
+
+        oblivionis = nix-darwin.lib.darwinSystem {
+          inherit inputs specialArgs;
+          system = "aarch64-darwin";
+          modules = [
+            ./hosts/oblivionis
+            home-manager.darwinModules.home-manager
+          ] ++ moduleGroup.darwin;
+        };
+      };
+
+      hmModules = moduleGroup.home;
     };
 }

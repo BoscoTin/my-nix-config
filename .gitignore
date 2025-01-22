@@ -1,4 +1,8 @@
+.env
+
 result
 result/
 **/.DS_Store
-modules/home-manager/programs/git/users/notshown/*.nix
+
+secrets/**
+!secrets/README.md
