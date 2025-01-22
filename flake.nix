@@ -44,6 +44,24 @@
             home-manager.darwinModules.home-manager
           ] ++ moduleGroup.darwin;
         };
+
+        doloris = nix-darwin.lib.darwinSystem {
+          inherit inputs specialArgs;
+          system = "aarch64-darwin";
+          modules = [
+            ./hosts/doloris
+            home-manager.darwinModules.home-manager
+          ] ++ moduleGroup.darwin;
+        };
+
+        oblivionis = nix-darwin.lib.darwinSystem {
+          inherit inputs specialArgs;
+          system = "aarch64-darwin";
+          modules = [
+            ./hosts/oblivionis
+            home-manager.darwinModules.home-manager
+          ] ++ moduleGroup.darwin;
+        };
       };
 
       hmModules = moduleGroup.home;
