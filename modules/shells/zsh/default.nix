@@ -54,6 +54,8 @@
       if [[ $(uname -m) == 'arm64' ]]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
       fi
+      
+      eval "$(fnm env --use-on-cd --shell zsh)"
 
       bindkey '^E' autosuggest-accept
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
