@@ -13,7 +13,7 @@
   programs = {
     git.enable = true;
     zsh.enable = true;
-    direnv.enable = true;
+    direnv.enable = false;
     vscode.enable = true;
   };
 }
