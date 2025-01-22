@@ -26,7 +26,7 @@
     ...
   }: let
       vars = {
-        hmUsername = "bosco";
+        username = "bosco";
         defaultGitUsername = "bosco";
         defaultGitMail = "boscotang98@gmail.com";
       };

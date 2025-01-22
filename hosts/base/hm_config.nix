@@ -6,14 +6,14 @@
 
 {
   home = {
-    username = vars.hmUsername;
-    homeDirectory = "/Users/${vars.hmUsername}";
+    username = vars.username;
+    homeDirectory = "/Users/${vars.username}";
     stateVersion = "24.11";
     sessionPath = [
       "$HOME/.local/bin"
       "/usr/local/bin"
       "/run/current-system/sw/bin"
-      "/etc/profiles/per-user/${vars.hmUsername}/bin"
+      "/etc/profiles/per-user/${vars.username}/bin"
     ];
     sessionVariables = {
       # enable scrolling in git diff

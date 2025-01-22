@@ -5,10 +5,10 @@
 }:
 
 {
-  users.users.${vars.hmUsername}.home = "/Users/${vars.hmUsername}";    
+  users.users.${vars.username}.home = "/Users/${vars.username}";    
   networking = {
-    hostName = "00-${vars.hmUsername}";
-    localHostName = "00-${vars.hmUsername}";
+    hostName = "00-${vars.username}";
+    localHostName = "00-${vars.username}";
   };
 
   nixpkgs.config.allowUnfree = true;

@@ -6,6 +6,9 @@
   ...
 }: 
 
+let
+  includedUsers = lib.filter (lib.strings.hasSuffix ".nix") (lib.filesystem.listFilesRecursive ./extra-users);
+in
 {
   # manage by hm, please only be imported in hm-module
   config = lib.mkIf config.programs.git.enable {
@@ -15,7 +18,7 @@
       userName = vars.defaultGitUsername;
       userEmail = vars.defaultGitMail;
 
-      includes = lib.filter (lib.strings.hasSuffix ".nix") (lib.filesystem.listFilesRecursive ./extra-users);
+      includes = includedUsers;
 
       ignores = [
         ".DS_Store"

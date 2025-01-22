@@ -7,14 +7,14 @@
 
 {
   imports = [
-    ./base/module_config.nix
+    ../base/module_config.nix
     ./darwin_config.nix
   ];
 
-  users.users.${vars.hmUsername}.shell = pkgs.zsh;
+  users.users.${vars.username}.shell = pkgs.zsh;
 
   # use hm user
-  home-manager.users.${vars.hmUsername} = {
+  home-manager.users.${vars.username} = {
     imports = [ ./hm_config.nix ] ++ inputs.self.hmModules;
     _module.args = {
       inherit inputs vars;
