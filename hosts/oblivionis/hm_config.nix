@@ -15,5 +15,6 @@
     zsh.enable = true;
     direnv.enable = true;
     vscode.enable = true;
+    go.enable = true;
   };
 }
