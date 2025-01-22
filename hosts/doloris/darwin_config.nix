@@ -18,4 +18,8 @@
     "/Applications/Arc.app/"
     "/Users/${vars.username}/Applications/Home Manager Apps/Visual Studio Code.app"
   ];
+
+  homebrew.casks = [
+    "firefox"
+  ];
 }
