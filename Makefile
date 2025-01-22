@@ -1,7 +1,15 @@
 PROFILE=mortis
 EMAIL=boscotang98@gmail.com
 
-init:
+install_nix:
+	sh <(curl -L https://nixos.org/nix/install)
+
+install_darwin:
+	xcode-select --install
+	softwareupdate --install-rosetta
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+setup:
 	ssh-keygen -t ed25519 -C "${EMAIL}" -f ~/.ssh/id_ed25519_default
 
 build:

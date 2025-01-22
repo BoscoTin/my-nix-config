@@ -20,38 +20,26 @@ https://www.google.co.jp/ime/
 
 1. Init
 
-- install nix
-- install homebrew
-- clone this config repo
+Download this repo
 
 ```
-# macos specific
-xcode-select --install
-softwareupdate --install-rosetta
+make install_nix
 
-# setup nix with config
-sh <(curl -L https://nixos.org/nix/install)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+make install_darwin
 ```
 
-Then start a new terminal session, run below
+
+2. Setup
 
 ```
-nix run nixpkgs#git --extra-experimental-features "nix-command flakes" -- clone git@github.com:BoscoTin/my-nix-config.git
-```
-
-Then cd to cloned repository
-
-2. setup required files
-
-```
-make init
+make setup $EMAIL
 ```
 
 3. Build & apply flake
 
 ```
 make build
+make switch $NIX_PROFILE
 ```
 
 ## After setup (optional)
