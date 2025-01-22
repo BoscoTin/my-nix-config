@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   vars,
@@ -6,42 +7,44 @@
 }: 
 
 {
-  programs.git = {
-    enable = true;
-    lfs.enable = true;
+  # manage by hm, please only be imported in hm-module
+  config = lib.mkIf config.programs.git.enable {
+    programs.git = {
+      lfs.enable = true;
 
-    userName = vars.defaultGitUsername;
-    userEmail = vars.defaultGitMail;
+      userName = vars.defaultGitUsername;
+      userEmail = vars.defaultGitMail;
 
-    includes = lib.filter (lib.strings.hasSuffix ".nix") (lib.filesystem.listFilesRecursive ./extra-users);
+      includes = lib.filter (lib.strings.hasSuffix ".nix") (lib.filesystem.listFilesRecursive ./extra-users);
 
-    ignores = [
-      ".DS_Store"
-    ];
+      ignores = [
+        ".DS_Store"
+      ];
 
-    aliases = {
-      prettylog = "log --pretty=format:'%C(Yellow)%h%x09%Creset%ai%x09%Cgreen%an %Cblue(%ae)%Creset: %s'";
-      undo = "reset --soft HEAD^";
-      cancel = "reset --hard HEAD^";
-      onemore = "commit -a --amend --no-edit";
-    };
-
-    # pager
-    delta = {
-      enable = true;
-      options = {
-        side-by-side = true;
-        navigate = true;
+      aliases = {
+        prettylog = "log --pretty=format:'%C(Yellow)%h%x09%Creset%ai%x09%Cgreen%an %Cblue(%ae)%Creset: %s'";
+        undo = "reset --soft HEAD^";
+        cancel = "reset --hard HEAD^";
+        onemore = "commit -a --amend --no-edit";
       };
-    };
 
-    extraConfig = {
-      push.autoSetupRemote = true;
-      pull.rebase = false;
+      # pager
+      delta = {
+        enable = true;
+        options = {
+          side-by-side = true;
+          navigate = true;
+        };
+      };
 
-      core = {
-        sshCommand = "ssh -i ~/.ssh/id_ed25519_default";
-        editor = "vim";
+      extraConfig = {
+        push.autoSetupRemote = true;
+        pull.rebase = false;
+
+        core = {
+          sshCommand = "ssh -i ~/.ssh/id_ed25519_default";
+          editor = "vim";
+        };
       };
     };
   };
