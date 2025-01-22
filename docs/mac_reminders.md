@@ -14,6 +14,14 @@ Many config not cover by nix (sigh)
 ## Apps
 
 <details>
+  <summary>Google IME (Japanese)</summary>
+
+  brew not working, nixpkgs has no suitable package. Install by your own.
+
+  https://www.google.co.jp/ime/
+</details>
+
+<details>
   <summary>Open vanilla</summary>
   
     System settings > Input method > + > Openvanilla
