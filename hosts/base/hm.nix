@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   vars,
   ...
@@ -14,7 +13,7 @@
       "$HOME/.local/bin"
       "/usr/local/bin"
       "/run/current-system/sw/bin"
-      "/etc/profiles/per-user/${vars.username}/bin"
+      "/etc/profiles/per-user/${vars.hmUsername}/bin"
     ];
     sessionVariables = {
       # enable scrolling in git diff
@@ -23,8 +22,4 @@
       PATH = "$GOPATH/bin:$PATH";
     };
   };
-
-  # todo: search on why cannot put in mortis
-  xdg.enable = true;
-  programs.ssh.enable = true;
 }

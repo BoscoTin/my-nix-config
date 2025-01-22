@@ -33,7 +33,26 @@
 
       modules = import ./all-modules.nix { inherit (nixpkgs) lib; };
 
-      specialArgs = { inherit inputs vars; };
+      specialArgs = { inherit inputs vars modules; };
+
+      # TODO: not apply overlay here
+      overlays = [
+        ({ pkgs, ... }: {
+          nixpkgs.config.allowUnfree = true;
+          nixpkgs.overlays = [
+            inputs.nix-vscode-extensions.overlays.default
+            (self: super: {
+              karabiner-elements = super.karabiner-elements.overrideAttrs (old: {
+                version = "14.13.0";
+                src = super.fetchurl {
+                  inherit (old.src) url;
+                  hash = "sha256-gmJwoht/Tfm5qMecmq1N6PSAIfWOqsvuHU8VDJY8bLw=";
+                };
+              });
+            })
+          ];
+        })
+      ];
     in {
       darwinConfigurations = {
         mortis = nix-darwin.lib.darwinSystem {
@@ -42,7 +61,8 @@
           modules = [
             ./hosts/mortis
             home-manager.darwinModules.home-manager
-          ] ++ modules.darwin;
+          ] ++ modules.darwin
+            ++ overlays;
         };
       };
     };

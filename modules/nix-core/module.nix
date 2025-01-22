@@ -5,10 +5,6 @@
 }:
 
 {
-  imports = [
-    ./overlay.nix
-  ];
-
   nix = {
     package = pkgs.nix;
     settings = {

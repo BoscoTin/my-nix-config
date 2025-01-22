@@ -5,7 +5,7 @@
 }:
 
 {
-  users.users.${vars.hmUsername}.home = "/Users/${vars.username}";
+  users.users.${vars.hmUsername}.home = "/Users/${vars.hmUsername}";
     
   networking = {
     hostName = "00-${vars.hmUsername}";
