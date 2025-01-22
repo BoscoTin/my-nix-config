@@ -6,7 +6,7 @@
 }:
 
 {
-  services.karabiner-elements.enable = true;
+  services.karabiner-elements.enable = false;
   security.pam.enableSudoTouchIdAuth = true;
 
   system.defaults.dock.orientation = "right";

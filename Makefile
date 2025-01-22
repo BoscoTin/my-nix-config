@@ -1,12 +1,16 @@
 include .env
 
 define before_nix_build
-	if [ -f ${GIT_SECRET_USERS_PATH}/*.nix ]; then cp ${GIT_SECRET_USERS_PATH}/*.nix ${NIX_GIT_USERS_PATH}; fi
-	git add ${NIX_GIT_USERS_PATH}/*.nix
+	if [ -f ${GIT_SECRET_USERS_PATH}/*.nix ]; then \
+		cp ${GIT_SECRET_USERS_PATH}/*.nix ${NIX_GIT_USERS_PATH}; \
+		git add ${NIX_GIT_USERS_PATH}/*.nix; \
+	fi
 endef
 
 define after_nix_build
-	if [ -f ${NIX_GIT_USERS_PATH}/*.nix ]; then rm ${NIX_GIT_USERS_PATH}/*.nix; fi
+	if [ -f ${NIX_GIT_USERS_PATH}/*.nix ]; then \
+		rm ${NIX_GIT_USERS_PATH}/*.nix; \
+	fi
 endef
 
 install_nix:
