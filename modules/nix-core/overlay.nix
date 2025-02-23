@@ -8,6 +8,7 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default
+    inputs.ghostty.overlays.default
     (self: super: {
       karabiner-elements = super.karabiner-elements.overrideAttrs (old: {
         version = "14.13.0";

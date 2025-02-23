@@ -16,6 +16,8 @@
     };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
   outputs = inputs @ { 
