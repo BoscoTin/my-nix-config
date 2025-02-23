@@ -2,18 +2,9 @@
 
 ## Usage guide
 
-1. Init
+1. Setup
 
 Download this repo
-
-```
-make install_nix
-
-make install_darwin
-```
-
-
-2. Setup
 
 Copy `.env.example` as `.env`
 
@@ -25,6 +16,15 @@ Profile list
 - `mortis`: darwin x86_64, casual profile
 
 Where main diff is, work profile not have karabiner, which usually banned from working machines
+
+2. Init
+
+```
+# if darwin
+make install_darwin
+
+make install_nix
+```
 
 Then run
 

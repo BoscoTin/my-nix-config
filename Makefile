@@ -14,7 +14,7 @@ define after_nix_build
 endef
 
 install_nix:
-	sh <(curl -L https://nixos.org/nix/install)
+	curl -L https://nixos.org/nix/install) | sh
 
 install_darwin:
 	xcode-select --install

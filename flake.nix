@@ -29,6 +29,7 @@
         username = "bosco";
         defaultGitUsername = "bosco";
         defaultGitMail = "boscotang98@gmail.com";
+        device = "mb";
       };
 
       moduleGroup = import ./all-modules.nix { inherit (nixpkgs) lib; };
