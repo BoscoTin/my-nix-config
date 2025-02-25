@@ -16,5 +16,6 @@
     direnv.enable = true;
     vscode.enable = true;
     go.enable = true;
+    ghostty.enable = true;
   };
 }

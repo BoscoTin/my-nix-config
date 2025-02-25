@@ -15,6 +15,7 @@
       "shottr"
       "raycast"
       "docker"
+      "ghostty" # if pkgs.ghostty works, removes
     ];
   };
 }

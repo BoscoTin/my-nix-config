@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -15,18 +16,17 @@
       jq
       fd
 
+      # consider modularize
       ctop
-
       kubectl
       kubectx
       teleport_15
       k9s
       stern
-
       awscli2
       terraform
-
       fnm
+      golangci-lint
     ]
   ) ++ lib.optionals (pkgs.system != "x86_64-darwin") (
     with pkgs; [

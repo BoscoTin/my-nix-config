@@ -22,7 +22,6 @@
   ];
 
   homebrew.casks = [
-    "ghostty" # if pkgs.ghostty works, removes
     "floorp"
     "discord"
     "telegram"
