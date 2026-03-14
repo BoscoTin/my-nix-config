@@ -6,12 +6,15 @@
 }:
 
 {
+  system.primaryUser = vars.username;
+
   services.karabiner-elements.enable = true;
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults.dock.orientation = "bottom";
   system.defaults.dock.persistent-apps = [
-    "/System/Applications/Launchpad.app/"
+    # tahoe no longer has launch pad...
+    # "/System/Applications/Launchpad.app/"
     "/System/Applications/iPhone Mirroring.app"
     "/Applications/Discord.app/"
     "/Applications/Telegram.app/"

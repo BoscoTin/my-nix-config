@@ -4,9 +4,9 @@
 }:
 
 {
-  programs.vscode.enableUpdateCheck = true;
+  programs.vscode.profiles.default.enableUpdateCheck = true;
 
-  programs.vscode.userSettings = {
+  programs.vscode.profiles.default.userSettings = {
     "editor.accessibilitySupport" = "off";
     "editor.inlineSuggest.suppressSuggestions" = true;
     "editor.semanticHighlighting.enabled" = true;

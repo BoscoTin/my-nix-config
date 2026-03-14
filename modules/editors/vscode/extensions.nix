@@ -4,8 +4,8 @@
 }:
 
 {
-  programs.vscode.enableExtensionUpdateCheck = false;
-  programs.vscode.extensions =
+  programs.vscode.profiles.default.enableExtensionUpdateCheck = false;
+  programs.vscode.profiles.default.extensions =
     (with pkgs.vscode-extensions; [
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons

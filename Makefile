@@ -1,16 +1,16 @@
 include .env
 
 define before_nix_build
-	if [ -f ${GIT_SECRET_USERS_PATH}/*.nix ]; then \
+	
 		cp ${GIT_SECRET_USERS_PATH}/*.nix ${NIX_GIT_USERS_PATH}; \
 		git add ${NIX_GIT_USERS_PATH}/*.nix; \
-	fi
+	
 endef
 
 define after_nix_build
-	if [ -f ${NIX_GIT_USERS_PATH}/*.nix ]; then \
+	
 		rm ${NIX_GIT_USERS_PATH}/*.nix; \
-	fi
+	
 endef
 
 install_nix:
@@ -34,7 +34,7 @@ build:
 
 switch:
 	$(before_nix_build)
-	./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#${PROFILE}"
+	sudo ./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#${PROFILE}"
 	$(after_nix_build)
 
 after_run:

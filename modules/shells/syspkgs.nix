@@ -20,7 +20,7 @@
       ctop
       kubectl
       kubectx
-      teleport_15
+      teleport
       k9s
       stern
       awscli2

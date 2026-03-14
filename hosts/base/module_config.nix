@@ -15,7 +15,8 @@
     packages = with pkgs; [
       meslo-lgs-nf
       source-code-pro
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      nerd-fonts.fira-code
+      nerd-fonts.symbols-only
     ];
   };
 

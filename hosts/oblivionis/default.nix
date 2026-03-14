@@ -23,4 +23,7 @@
 
   # nix settings
   system.stateVersion = 4;
+
+  # fix on 25.11 error: Build user group has mismatching GID, aborting activation
+  ids.gids.nixbld = 350;
 }

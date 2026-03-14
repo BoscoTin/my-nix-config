@@ -19,6 +19,4 @@
       options = lib.mkDefault "--delete-older-than 30d";
     };
   };
-
-  services.nix-daemon.enable = true;
 }

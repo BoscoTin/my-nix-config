@@ -7,11 +7,12 @@
 
 {
   services.karabiner-elements.enable = true;
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults.dock.orientation = "bottom";
   system.defaults.dock.persistent-apps = [
-    "/System/Applications/Launchpad.app/"
+    # tahoe no longer has launch pad...
+    # "/System/Applications/Launchpad.app/"
     "/Applications/Discord.app/"
     "/Applications/Telegram.app/"
     "/Applications/Signal.app/"
