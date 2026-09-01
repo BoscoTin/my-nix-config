@@ -24,7 +24,8 @@ in
       user.name = vars.defaultGitUsername;
       user.email = vars.defaultGitMail;
 
-      aliases = {
+      # [alias] — `aliases` (plural) writes [aliases], which git ignores
+      alias = {
         prettylog = "log --pretty=format:'%C(Yellow)%h%x09%Creset%ai%x09%Cgreen%an %Cblue(%ae)%Creset: %s'";
         undo = "reset --soft HEAD^";
         cancel = "reset --hard HEAD^";
