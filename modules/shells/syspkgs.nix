@@ -16,11 +16,15 @@
       jq
       fd
 
+      # flake workflow (see justfile)
+      just
+      nvd
+
       # consider modularize
       ctop
       kubectl
       kubectx
-      teleport
+      # teleport
       k9s
       stern
       awscli2
