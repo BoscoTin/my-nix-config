@@ -21,6 +21,9 @@
   # apply to this user. Required or activation aborts with an assertion.
   system.primaryUser = vars.username;
 
+  # register zsh in /etc/shells so it is a valid login shell without manual chsh
+  environment.shells = [ pkgs.zsh ];
+
   fonts.packages = with pkgs; [
     meslo-lgs-nf
     source-code-pro
