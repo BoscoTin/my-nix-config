@@ -35,12 +35,11 @@ Copy `.env.example` as `.env`
 
 Fill in email & profile
 
-Profile list
-- `dororis`: darwin aarch64, work profile
-- `oblivionis`: darwin aarch64, casual profile
-- `mortis`: darwin x86_64, casual profile
+Hosts (`hosts/<name>.nix`, each imports a `profiles/<profile>.nix`)
+- `doloris`: aarch64-darwin, work profile
+- `oblivionis`: aarch64-darwin, casual profile
 
-Where main diff is, work profile not have karabiner, which usually banned from working machines
+Main diff: the work profile has no karabiner (banned on managed machines).
 
 2. Init
 

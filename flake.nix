@@ -20,11 +20,9 @@
     ghostty.url = "github:ghostty-org/ghostty";
   };
 
-  outputs = inputs @ { 
+  outputs = inputs @ {
     self,
     nixpkgs,
-    nix-darwin,
-    home-manager,
     ...
   }: let
       vars = {
@@ -35,42 +33,15 @@
       };
 
       moduleGroup = import ./all-modules.nix { inherit (nixpkgs) lib; };
-
-      specialArgs = { inherit vars; };
+      mkHost = import ./lib/mkHost.nix { inherit inputs vars moduleGroup; };
 
       systems = [ "aarch64-darwin" "x86_64-darwin" ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
     in {
       darwinConfigurations = {
-        mortis = nix-darwin.lib.darwinSystem {
-          inherit inputs specialArgs;
-          system = "x86_64-darwin";
-          modules = [
-            ./hosts/mortis
-            home-manager.darwinModules.home-manager
-          ] ++ moduleGroup.darwin;
-        };
-
-        doloris = nix-darwin.lib.darwinSystem {
-          inherit inputs specialArgs;
-          system = "aarch64-darwin";
-          modules = [
-            ./hosts/doloris
-            home-manager.darwinModules.home-manager
-          ] ++ moduleGroup.darwin;
-        };
-
-        oblivionis = nix-darwin.lib.darwinSystem {
-          inherit inputs specialArgs;
-          system = "aarch64-darwin";
-          modules = [
-            ./hosts/oblivionis
-            home-manager.darwinModules.home-manager
-          ] ++ moduleGroup.darwin;
-        };
+        oblivionis = mkHost { hostname = "oblivionis"; system = "aarch64-darwin"; };
+        doloris = mkHost { hostname = "doloris"; system = "aarch64-darwin"; };
       };
-
-      hmModules = moduleGroup.home;
 
       # `nix run .#just` — pinned to this flake's nixpkgs, so the workflow
       # bootstraps on a machine that has no `just` yet.
@@ -79,14 +50,9 @@
       });
 
       # `nix flake check` / `just check` builds each host's system closure.
-      checks = {
-        aarch64-darwin = {
-          oblivionis = self.darwinConfigurations.oblivionis.system;
-          doloris = self.darwinConfigurations.doloris.system;
-        };
-        x86_64-darwin = {
-          mortis = self.darwinConfigurations.mortis.system;
-        };
+      checks.aarch64-darwin = {
+        oblivionis = self.darwinConfigurations.oblivionis.system;
+        doloris = self.darwinConfigurations.doloris.system;
       };
     };
 }

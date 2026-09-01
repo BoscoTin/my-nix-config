@@ -1,32 +1,27 @@
+# doloris — Apple Silicon, work profile.
 {
-  lib,
-  inputs,
   vars,
   ...
 }:
 
 {
-  services.karabiner-elements.enable = true;
+  imports = [ ../profiles/work.nix ];
+
+  services.karabiner-elements.enable = false;
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  system.defaults.dock.orientation = "bottom";
+  system.defaults.dock.orientation = "right";
   system.defaults.dock.persistent-apps = [
+    "/System/Applications/System Settings.app/"
     # tahoe no longer has launch pad...
     # "/System/Applications/Launchpad.app/"
-    "/Applications/Discord.app/"
-    "/Applications/Telegram.app/"
-    "/Applications/Signal.app/"
+    "/Applications/Ghostty.app/"
     "/System/Applications/Notes.app/"
     "/Applications/Arc.app/"
     "/Users/${vars.username}/Applications/Home Manager Apps/Visual Studio Code.app"
   ];
 
   homebrew.casks = [
-    "floorp"
-    "discord"
-    "telegram"
-    "signal"
-    "motrix"
-    "surfshark"
+    "firefox"
   ];
 }

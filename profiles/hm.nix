@@ -1,5 +1,5 @@
+# Shared home-manager config for every host. Imported per-user by lib/mkHost.nix.
 {
-  pkgs,
   vars,
   ...
 }:
@@ -21,5 +21,17 @@
       TERM = "xterm-256color";
       PATH = "$(go env GOPATH)/bin:$PATH";
     };
+  };
+
+  xdg.enable = true;
+
+  # toggles for modules/**/hm-module.nix — see those for what each enables
+  programs = {
+    git.enable = true;
+    zsh.enable = true;
+    direnv.enable = true;
+    vscode.enable = true;
+    go.enable = true;
+    ghostty.enable = true;
   };
 }
