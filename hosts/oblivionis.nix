@@ -7,8 +7,6 @@
 {
   imports = [ ../profiles/casual.nix ];
 
-  system.primaryUser = vars.username;
-
   # fix on 25.11 error: Build user group has mismatching GID, aborting activation
   ids.gids.nixbld = 350;
 

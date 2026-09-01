@@ -16,6 +16,11 @@
     localHostName = "00-${vars.username}-${vars.device}";
   };
 
+  # nix-darwin multi-user migration: activation runs as root, and the
+  # primary-user-scoped options (homebrew, NSGlobalDomain defaults, ...)
+  # apply to this user. Required or activation aborts with an assertion.
+  system.primaryUser = vars.username;
+
   fonts.packages = with pkgs; [
     meslo-lgs-nf
     source-code-pro
