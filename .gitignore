@@ -2,6 +2,7 @@
 
 result
 result/
+result-*
 **/.DS_Store
 
 secrets/**
