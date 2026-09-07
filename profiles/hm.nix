@@ -25,13 +25,13 @@
 
   xdg.enable = true;
 
-  # toggles for modules/**/hm-module.nix — see those for what each enables
+  # toggles for modules/**/hm-module.nix — see those for what each enables.
+  # programs.go follows my.roles.go (wired in profiles/base.nix).
   programs = {
     git.enable = true;
     zsh.enable = true;
     direnv.enable = true;
     vscode.enable = true;
-    go.enable = true;
     ghostty.enable = true;
   };
 }

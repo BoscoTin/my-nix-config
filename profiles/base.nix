@@ -1,11 +1,15 @@
 # Shared system config for every host. Imported by profiles/{casual,work}.nix.
 {
+  config,
   pkgs,
   vars,
   ...
 }:
 
 {
+  # go toolchain follows the role (golangci-lint is added by syspkgs.nix)
+  home-manager.users.${vars.username}.programs.go.enable = config.my.roles.go;
+
   users.users.${vars.username} = {
     home = "/Users/${vars.username}";
     shell = pkgs.zsh;
