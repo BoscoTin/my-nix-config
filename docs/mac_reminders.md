@@ -1,79 +1,72 @@
-# Macos after setup
+# macOS after setup
 
-Many config not cover by nix (sigh) 
+Steps not covered by nix.
 
-## System settings
+## Now nix-managed (verify, don't redo)
 
-- 24 hour clock
-- Notification show preview
-- Control center
-    - sound / now playing not show
-    - battery show percentage
-- Wallpaper > Bigsur graphic
+- 24-hour clock — `modules/darwin/system/sys_defaults.nix`
+- Control Center: sound / now-playing hidden, battery percentage —
+  `modules/darwin/system/controlcenter.nix`
+- Login shell zsh — `profiles/base.nix` (`environment.shells` + `users.users`)
+
+Still manual:
+
+- Notification: show preview
+- Wallpaper > Big Sur graphic
+
+## Caps Lock → Google IME (かな ⇄ alphanumeric)
+
+Replaces the old karabiner rule. See `modules/darwin/system/keyboard.nix`.
+
+1. System Settings > Keyboard > Input Sources > Edit… > enable
+   "Use the Caps Lock key to switch to and from <Japanese – Google>".
+2. Capture the plist delta and paste it into `keyboard.nix`:
+   ```
+   defaults read com.apple.HIToolbox > /tmp/hit.before
+   # toggle the setting
+   defaults read com.apple.HIToolbox > /tmp/hit.after
+   diff /tmp/hit.before /tmp/hit.after
+   ```
+3. Google IME > Preferences > Keymap: bind Caps Lock / 英数 to
+   "Set input mode to alphanumeric" and かな to "Set input mode to Hiragana"
+   (binary config, can't be nix-managed).
+
+## Modifier keys (ctrl ⇄ cmd, etc.)
+
+System Settings > Keyboard > Keyboard Shortcuts > Modifier Keys, per keyboard.
+For a custom board (e.g. ikki-68) swap the modifiers one by one.
 
 ## Apps
 
 <details>
   <summary>Google IME (Japanese)</summary>
 
-  brew not working, nixpkgs has no suitable package. Install by your own.
-
-  https://www.google.co.jp/ime/
+  Not in nixpkgs / brew. Install manually: https://www.google.co.jp/ime/
 </details>
 
 <details>
-  <summary>Open vanilla</summary>
-  
-    System settings > Input method > + > Openvanilla
+  <summary>OpenVanilla</summary>
+
+  System Settings > Keyboard > Input Sources > + > OpenVanilla
 </details>
 
 <details>
   <summary>Docker</summary>
 
-  Launcher > Open Docker app > accept
-  Tune resource setting to lesser
+  Launcher > open Docker app > accept. Tune resources down.
 </details>
 
 <details>
   <summary>Shottr</summary>
 
-  Settings > screenshot > keyboard shortcuts
-  Turn off all screenshot shortcuts
-
-  Then open shottr.app
-  set command + shift + 3 > full area
-  set command + shift + 4 > area screenshot
-  set command + shift + 5 > scroll screenshot
-</details>
-
-<details>
-  <summary>Karabiner</summary>
-
-  Add extras/karabiner json to custom rules in Karabiner Elements
-
-  For custom keyboard, switch the modifiers key one by one in karabiner elements > basic > devices > modifiers
-  e.g. ikki-68, which in macos swap to macos config = [option, command, ctrl], in karabiner it need left-command -> left-option & left-option -> left-command
+  Settings > Screenshot > keyboard shortcuts: turn off all macOS screenshot
+  shortcuts, then in shottr.app set cmd+shift+3 full area, cmd+shift+4 area,
+  cmd+shift+5 scroll.
 </details>
 
 ## Finder sidebar
 
-Open finder > Move to ~/Users/user > File > Add to sidebar
-
-Remove recents
-
-## Terminal color profile
-
-Terminal > Preferences > Profiles > Colors > Import... > `darwin/extras/Macchiato.terminal`
-
-Change font after import: `MesloLGS...`
-
-## Ensure user default shell is zsh
-
-Some settings cannot be applied when default shell not zsh, can force change by
-
-```chsh -s /etc/profiles/per-user/${}/bin/zsh```
-
-Replace ${} with vars.username you set
+Finder > go to /Users/<user> > File > Add to Sidebar. Remove Recents.
 
 ---
 
@@ -82,19 +75,10 @@ Replace ${} with vars.username you set
 <details>
   <summary>Blackhole</summary>
 
-    1. Install Blackhole audio plugin.
-
-    2. Open audio midi app
-
-    3. Make a new aggregate device
-
-    4. Add blackhole input and your mic (let’s say your MacBook mic)
-
-    5. Make a new multi output
-
-    6. Add blackhole and your speaker (macs speaker)
-
-    7. Quit the Audio MIDI app
-
-    8. Cmd click on sound module in control center and change output and input to the new output and input we just made.
+  1. Install the Blackhole audio plugin.
+  2. Open Audio MIDI Setup.
+  3. New aggregate device: Blackhole + your mic.
+  4. New multi-output: Blackhole + your speakers.
+  5. Quit Audio MIDI Setup.
+  6. Cmd-click the sound module in Control Center, pick the new I/O.
 </details>
