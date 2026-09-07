@@ -7,3 +7,5 @@ result-*
 
 secrets/**
 !secrets/README.md
+!secrets/secrets.nix
+!secrets/*.age
