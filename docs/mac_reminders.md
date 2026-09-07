@@ -14,27 +14,40 @@ Still manual:
 - Notification: show preview
 - Wallpaper > Big Sur graphic
 
-## Caps Lock → Google IME (かな ⇄ alphanumeric)
+## Caps Lock → Google IME (romaji ⇄ alphanumeric)
 
-Replaces the old karabiner rule. See `modules/darwin/system/keyboard.nix`.
+Replaces the old karabiner rule. The macOS "Use Caps Lock to switch input
+source" toggle does **not** work with Google Japanese IME (macOS treats it as
+Latin), so instead:
 
-1. System Settings > Keyboard > Input Sources > Edit… > enable
-   "Use the Caps Lock key to switch to and from <Japanese – Google>".
-2. Capture the plist delta and paste it into `keyboard.nix`:
-   ```
-   defaults read com.apple.HIToolbox > /tmp/hit.before
-   # toggle the setting
-   defaults read com.apple.HIToolbox > /tmp/hit.after
-   diff /tmp/hit.before /tmp/hit.after
-   ```
-3. Google IME > Preferences > Keymap: bind Caps Lock / 英数 to
-   "Set input mode to alphanumeric" and かな to "Set input mode to Hiragana"
-   (binary config, can't be nix-managed).
+**nix (done)** — `modules/darwin/system/keyboard.nix` maps Caps Lock → 英数
+(Lang2) via `system.keyboard.userKeyMapping`. Verify after a switch:
+`hidutil property --get "UserKeyMapping"` shows `Src 30064771129 -> Dst 30064771217`.
 
-## Modifier keys (ctrl ⇄ cmd, etc.)
+**one-time manual:**
 
-System Settings > Keyboard > Keyboard Shortcuts > Modifier Keys, per keyboard.
-For a custom board (e.g. ikki-68) swap the modifiers one by one.
+1. Enable "Japanese – Google" as an input source (System Settings > Keyboard >
+   Input Sources > +). Google IME itself is a manual install (not in nixpkgs) —
+   <https://www.google.co.jp/ime/>.
+2. Google Japanese IME > Preferences > Keymap > Customize. Bind key `Eisu`
+   (英数) to command `ToggleAlphanumericMode` for the Composition, Conversion
+   and Precomposition/Direct modes. (Mozc's default MS-IME/Kotoeri preset may
+   already give "Eisu → alphanumeric"; the custom `ToggleAlphanumericMode`
+   binding is what makes it toggle back.) The keymap is a binary config, not
+   nix-manageable.
+3. Turn **off** the macOS "Use Caps Lock to switch…" toggle if you had enabled
+   it — Caps Lock no longer reaches macOS as a caps-lock event, so it's inert.
+
+Caveats: Caps Lock stops working as a caps-lock key; no LED feedback (that
+needed karabiner).
+
+## Modifier keys
+
+- **Left Ctrl ⇄ Left Command** — nix, `keyboard.nix` (`userKeyMapping`).
+  Verify: `hidutil property --get "UserKeyMapping"`.
+- **ikki-68 Left Command ⇄ Left Option** — per-device: System Settings >
+  Keyboard > Keyboard Shortcuts > Modifier Keys with that board selected.
+  Keyed by USB vendor/product id, so not worth nix-ifying.
 
 ## Apps
 
