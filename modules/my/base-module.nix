@@ -10,5 +10,12 @@
       type = lib.types.enum [ "casual" "work" ];
       description = "Which profile this host follows. Set by profiles/<name>.nix.";
     };
+
+    roles = {
+      kubernetes = lib.mkEnableOption "kubernetes CLIs (kubectl, kubectx, k9s, stern, ctop)";
+      cloud = lib.mkEnableOption "cloud CLIs (awscli2)";
+      node = lib.mkEnableOption "node toolchain (fnm)";
+      go = lib.mkEnableOption "go toolchain (programs.go, golangci-lint)";
+    };
   };
 }
