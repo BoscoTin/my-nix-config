@@ -27,8 +27,9 @@ in
       just
       nvd
 
-      # edit secrets/*.age
+      # secrets: agenix edits blobs, age provides age-keygen
       agenix
+      age
     ])
     ++ lib.optionals roles.kubernetes (with pkgs; [
       ctop
