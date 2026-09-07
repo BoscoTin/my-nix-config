@@ -17,5 +17,16 @@
       node = lib.mkEnableOption "node toolchain (fnm)";
       go = lib.mkEnableOption "go toolchain (programs.go, golangci-lint)";
     };
+
+    git.includePath = lib.mkOption {
+      type = lib.types.str;
+      default = "~/.config/git/00-local";
+      description = ''
+        Path git unconditionally includes for identity. Casual keeps the
+        default (an [includeIf] dispatch that only swaps identity for work
+        repos); work points it straight at the work identity so every repo
+        commits as work.
+      '';
+    };
   };
 }

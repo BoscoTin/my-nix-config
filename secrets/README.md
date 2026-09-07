@@ -6,15 +6,23 @@ gitignored.
 
 ## How it wires up
 
-- `profiles/secrets.nix` (imported by `profiles/base.nix`, so **every host**)
-  decrypts each blob at activation to a `0600` file under `~/.config/git/`:
-  - `git-local.age` -> `~/.config/git/00-local` — the `[includeIf ...]` dispatch
-  - `git-work.age`  -> `~/.config/git/10-work`  — `[user]` / `[core]` for work
-- `modules/git/hm-module.nix` adds a single unconditional
-  `include.path = ~/.config/git/00-local`. Git ignores it when the file is
-  absent (un-provisioned host), and the work identity in `10-work` only takes
-  effect for repos whose remote matches the `[includeIf]` condition — so the
-  casual machine commits as personal everywhere except work repos.
+`profiles/secrets.nix` (imported by `profiles/base.nix`) decrypts blobs at
+activation to `0600` files under `~/.config/git/`:
+
+| blob | -> file | hosts |
+|---|---|---|
+| `git-work.age`  | `~/.config/git/10-work`  — `[user]` / `[core]` for work | every host |
+| `git-local.age` | `~/.config/git/00-local` — `[includeIf ...]` dispatch   | casual only |
+
+`modules/git/hm-module.nix` adds one `include.path`, set by
+`my.git.includePath`:
+
+- **casual** -> `00-local`: personal identity is the default; the work identity
+  applies only to repos whose remote matches the `[includeIf]` condition.
+- **work** -> `10-work`: every repo commits as the work identity, no personal
+  default.
+
+Git ignores the include when the file is absent (un-provisioned host).
 
 ## First-time setup (one machine)
 
@@ -52,6 +60,8 @@ just secret-edit git-local.age
 [includeIf "hasconfig:remote.*.url:git@bitbucket.org:acme/**"]
 	path = ~/.config/git/10-work
 ```
+
+The work machine only needs `git-work.age`; the casual machine needs both.
 
 Then `git add secrets/*.age secrets/secrets.nix`, `just build`, `just switch`.
 

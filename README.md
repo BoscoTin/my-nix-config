@@ -32,9 +32,9 @@ registry dependency.
 - `oblivionis`: aarch64-darwin, casual profile
 - `doloris`: aarch64-darwin, work profile
 
-Work profile has no karabiner (banned on managed machines). Every host carries
-the agenix git identities — the work identity only activates for work repos
-(see `secrets/README.md`).
+Work profile has no karabiner (banned on managed machines) and commits every
+repo as the work identity. Casual defaults to the personal identity and only
+uses the work one for work repos. Both via agenix (see `secrets/README.md`).
 
 ## New machine
 

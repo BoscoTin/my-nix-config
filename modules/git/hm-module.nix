@@ -1,4 +1,5 @@
 {
+  osConfig,
   vars,
   ...
 }:
@@ -7,9 +8,9 @@
   programs.git = {
     lfs.enable = true;
 
-    # per-directory work identity — decrypted by profiles/secrets.nix on hosts
-    # that carry it, absent (and silently ignored by git) elsewhere
-    includes = [ { path = "~/.config/git/00-local"; } ];
+    # identity entry point — decrypted by profiles/secrets.nix, absent (and
+    # silently ignored by git) on un-provisioned hosts. See my.git.includePath.
+    includes = [ { path = osConfig.my.git.includePath; } ];
 
     ignores = [
       ".DS_Store"
