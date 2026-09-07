@@ -8,7 +8,6 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default
-    inputs.ghostty.overlays.default
     inputs.agenix.overlays.default
 
     # pkgs.unstable.<pkg> — nixos-unstable, for packages not yet good on stable

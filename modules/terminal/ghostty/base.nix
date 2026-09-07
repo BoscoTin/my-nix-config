@@ -12,13 +12,10 @@
     enableFishIntegration = config.programs.fish.enable;
     enableZshIntegration = config.programs.zsh.enable;
 
-    package = 
-        if pkgs.stdenv.isDarwin
-        then pkgs.emptyDirectory # pkgs.ghostty is currently broken on darwin
-        else pkgs.ghostty;
+    # nixpkgs ghostty is linux-only; on darwin the Homebrew cask provides the
+    # app and home-manager only manages ~/.config/ghostty/config
+    package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty;
 
-    installBatSyntax = false;
-    
     settings = {
       theme = "catppuccin-macchiato";
 
