@@ -1,5 +1,6 @@
-# agenix-decrypted git identities. Imported only by profiles that need them
-# (currently work). Casual hosts never load agenix.
+# agenix-decrypted git identities. Imported by profiles/base.nix, so every host
+# carries them — the work identity only activates for work repos, via the
+# [includeIf] condition in git-local.age.
 #
 # Runtime prerequisite: the shared age key at ~/.config/agenix/key.txt
 # (see secrets/README.md). Blobs are picked up once committed as secrets/*.age.

@@ -2,7 +2,7 @@
 { ... }:
 
 {
-  imports = [ ./base.nix ./secrets.nix ];
+  imports = [ ./base.nix ];
 
   my.profile = "work";
   my.roles = {

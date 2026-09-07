@@ -6,13 +6,15 @@ gitignored.
 
 ## How it wires up
 
-- `profiles/secrets.nix` (imported by `profiles/work.nix` only) decrypts each
-  blob at activation to a `0600` file under `~/.config/git/`:
+- `profiles/secrets.nix` (imported by `profiles/base.nix`, so **every host**)
+  decrypts each blob at activation to a `0600` file under `~/.config/git/`:
   - `git-local.age` -> `~/.config/git/00-local` — the `[includeIf ...]` dispatch
   - `git-work.age`  -> `~/.config/git/10-work`  — `[user]` / `[core]` for work
 - `modules/git/hm-module.nix` adds a single unconditional
   `include.path = ~/.config/git/00-local`. Git ignores it when the file is
-  absent, so casual hosts and un-provisioned work hosts are unaffected.
+  absent (un-provisioned host), and the work identity in `10-work` only takes
+  effect for repos whose remote matches the `[includeIf]` condition — so the
+  casual machine commits as personal everywhere except work repos.
 
 ## First-time setup (one machine)
 

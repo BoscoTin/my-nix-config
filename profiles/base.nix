@@ -7,6 +7,8 @@
 }:
 
 {
+  imports = [ ./secrets.nix ];
+
   # go toolchain follows the role (golangci-lint is added by syspkgs.nix)
   home-manager.users.${vars.username}.programs.go.enable = config.my.roles.go;
 
