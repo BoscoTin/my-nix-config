@@ -4,7 +4,7 @@
 }:
 
 {
-  programs.vscode.profiles.default.enableExtensionUpdateCheck = false;
+  # extensions.autoCheckUpdates lives in config/vscode/settings.json now
   programs.vscode.profiles.default.extensions =
     (with pkgs.vscode-extensions; [
       catppuccin.catppuccin-vsc

@@ -2,13 +2,19 @@
 #
 # System-level (nix-darwin) options. Home-manager modules read these via
 # `osConfig.my.*`. Options are added here as the phase that consumes them lands.
-{ lib, ... }:
+{ lib, vars, ... }:
 
 {
   options.my = {
     profile = lib.mkOption {
       type = lib.types.enum [ "casual" "work" ];
       description = "Which profile this host follows. Set by profiles/<name>.nix.";
+    };
+
+    repoPath = lib.mkOption {
+      type = lib.types.str;
+      default = "/Users/${vars.username}/Projects/my-nix-config";
+      description = "Absolute path to this repo's working tree, for out-of-store symlinks.";
     };
 
     roles = {
