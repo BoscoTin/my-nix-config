@@ -1,21 +1,26 @@
+# oblivionis — Apple Silicon, casual profile.
 {
-  lib,
-  inputs,
   vars,
   ...
 }:
 
 {
-  services.karabiner-elements.enable = true;
-  security.pam.enableSudoTouchIdAuth = true;
+  imports = [ ../profiles/casual.nix ];
+
+  # fix on 25.11 error: Build user group has mismatching GID, aborting activation
+  ids.gids.nixbld = 350;
+
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults.dock.orientation = "bottom";
   system.defaults.dock.persistent-apps = [
-    "/System/Applications/Launchpad.app/"
+    # tahoe no longer has launch pad...
+    # "/System/Applications/Launchpad.app/"
+    "/System/Applications/iPhone Mirroring.app"
     "/Applications/Discord.app/"
     "/Applications/Telegram.app/"
     "/Applications/Signal.app/"
-    "/System/Applications/Notes.app/"
+    "/Applications/Ghostty.app/"
     "/Applications/Arc.app/"
     "/Users/${vars.username}/Applications/Home Manager Apps/Visual Studio Code.app"
   ];

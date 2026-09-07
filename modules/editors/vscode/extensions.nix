@@ -4,8 +4,8 @@
 }:
 
 {
-  programs.vscode.enableExtensionUpdateCheck = false;
-  programs.vscode.extensions =
+  # extensions.autoCheckUpdates lives in config/vscode/settings.json now
+  programs.vscode.profiles.default.extensions =
     (with pkgs.vscode-extensions; [
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons

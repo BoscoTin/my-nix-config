@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -7,6 +8,9 @@
 {
   # manage by hm, please only be imported in hm-module
   programs.zsh = {
+    # keep the pre-26.05 default (~/.zshrc); 26.05 moves it under XDG
+    dotDir = config.home.homeDirectory;
+
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
@@ -42,25 +46,27 @@
         file = "themes/cappuchin_mocha-zsh-syntax-highlighting.zsh";
       }
     ];
-  
-    initExtraBeforeCompInit = ''
-      # p10k instant prompt
-      P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
-      [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
-    '';
 
-    initExtra = ''
-      # make sure brew is on the path for aarch64-darwin
-      if [[ $(uname -m) == 'arm64' ]]; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-      fi
-      
-      eval "$(fnm env --use-on-cd --shell zsh)"
+    initContent = lib.mkMerge [
+      (lib.mkOrder 500 ''
+        # p10k instant prompt
+        P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
+        [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
+      '')
 
-      bindkey '^E' autosuggest-accept
-      ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
-    '';
+      (lib.mkOrder 1000 ''
+        # make sure brew is on the path for aarch64-darwin
+        if [[ $(uname -m) == 'arm64' ]]; then
+          eval "$(/opt/homebrew/bin/brew shellenv)"
+        fi
+        
+        command -v fnm >/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
+
+        bindkey '^E' autosuggest-accept
+        ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+        HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+      '')
+    ];
 
     profileExtra = ''
       fastfetch
