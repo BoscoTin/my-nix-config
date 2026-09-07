@@ -70,3 +70,33 @@ generations:
 gc:
     sudo nix-collect-garbage --delete-older-than 30d
     nix store optimise
+
+# --- secrets (agenix) -------------------------------------------------------
+
+# edit an encrypted blob, e.g. `just secret-edit git-work.age`
+secret-edit file:
+    cd secrets && agenix -e {{ file }} -i ~/.config/agenix/key.txt
+
+# print this machine's age recipient line for secrets/secrets.nix
+age-recipient:
+    @age-keygen -y ~/.config/agenix/key.txt
+
+# --- one-time machine bootstrap ------------------------------------------------
+
+# xcode CLT, rosetta, homebrew
+install-darwin:
+    xcode-select --install || true
+    softwareupdate --install-rosetta --agree-to-license
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# install nix
+install-nix:
+    sh <(curl -L https://nixos.org/nix/install)
+
+# generate the default ssh key, e.g. `just ssh-keygen you@example.com`
+ssh-keygen email:
+    ssh-keygen -t ed25519 -C "{{ email }}" -f ~/.ssh/id_ed25519_default
+
+# print the default ssh public key
+ssh-pubkey:
+    @cat ~/.ssh/id_ed25519_default.pub

@@ -25,48 +25,29 @@ exec zsh                          # pick up the new PATH
 `nix run .#just` uses the `just` pinned by this flake, so no prior install and no
 registry dependency.
 
-## Usage guide
+## Hosts
 
-1. Setup
+`hosts/<name>.nix`, each importing a `profiles/<profile>.nix`:
 
-Download this repo
-
-Copy `.env.example` as `.env`
-
-Fill in email & profile
-
-Hosts (`hosts/<name>.nix`, each imports a `profiles/<profile>.nix`)
-- `doloris`: aarch64-darwin, work profile
 - `oblivionis`: aarch64-darwin, casual profile
+- `doloris`: aarch64-darwin, work profile
 
-Main diff: the work profile has no karabiner (banned on managed machines).
+Work profile has no karabiner (banned on managed machines) and carries the
+agenix git identities (see `secrets/README.md`).
 
-2. Init
-
-```
-# if darwin
-make install_darwin
-
-make install_nix
-```
-
-Then run
+## New machine
 
 ```
-make setup
+just install-nix
+just install-darwin           # xcode CLT, rosetta, homebrew
+just ssh-keygen you@example.com
+# for a work host: copy ~/.config/agenix/key.txt over (see secrets/README.md)
+nix run .#just -- switch <host>
+exec zsh
 ```
 
-3. Build & apply flake
+## After a switch
 
-```
-make build
-make switch
-```
-
-4. Restart
-
-Usually if you updated these things, you need to restart
-
-- karabiner
-
-For macos dock update, `killall Dock` to apply
+- system settings changes may need a logout/login
+- dock changes: `killall Dock`
+- `just rollback` reverts to the previous generation
