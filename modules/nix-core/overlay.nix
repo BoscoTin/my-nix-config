@@ -9,6 +9,7 @@
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default
     inputs.ghostty.overlays.default
+    inputs.agenix.overlays.default
     (self: super: {
       karabiner-elements = super.karabiner-elements.overrideAttrs (old: {
         version = "14.13.0";
