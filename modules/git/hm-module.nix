@@ -1,20 +1,15 @@
 {
-  config,
-  lib,
-  pkgs,
   vars,
   ...
-}: 
+}:
 
-let
-  includedUsers = lib.filter (lib.strings.hasSuffix ".nix") (lib.filesystem.listFilesRecursive ./extras);
-in
 {
   programs.git = {
     lfs.enable = true;
 
-
-    includes = [] ++ includedUsers;
+    # per-directory work identity — decrypted by profiles/secrets.nix on hosts
+    # that carry it, absent (and silently ignored by git) elsewhere
+    includes = [ { path = "~/.config/git/00-local"; } ];
 
     ignores = [
       ".DS_Store"
