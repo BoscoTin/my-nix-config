@@ -26,6 +26,9 @@ in
       # flake workflow (see justfile)
       just
       nvd
+
+      # edit secrets/*.age
+      agenix
     ])
     ++ lib.optionals roles.kubernetes (with pkgs; [
       ctop
