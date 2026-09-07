@@ -1,8 +1,21 @@
 # Switch-test problems
 
-You tested the **Phase 3** build (`avplgj9…-25.11`). Phases 4–7 are already
-committed on this branch — several of these are fixed by moving to the current
-HEAD (`nix run .#just -- switch oblivionis`, the 26.05 build).
+Outcome:
+
+| # | Resolution |
+|---|---|
+| 1 ghostty theme not applied | fixed — theme name `Catppuccin Macchiato` (`8c215f3`) |
+| 2 `$GHOSTTY_RESOURCES_DIR` empty | not a bug — set by the app inside a ghostty window |
+| 3 karabiner leftovers | removed; teardown steps in `karabiner-cleanup.md` |
+| 4 24h clock / battery % | declared in nix; repro-tested where possible |
+| 5 Caps Lock → Google IME toggle | **deferred** — no clean non-karabiner option (see below) |
+| 6 rollback target mismatch | expected; not a failure |
+
+**#5 deferred:** macOS's native Caps-Lock language switch won't target Google
+Japanese IME (Mozc reports ASCII-capable). Kotoeri works natively but hard-binds
+`Ctrl`+digit (breaks Arc/Zen space shortcuts). The `hidutil` Caps→英数 route
+works but consumes the Caps Lock key with no LED. None adopted; the Caps→英数
+block stays commented in `keyboard.nix`, and 英数 is used by hand for now.
 
 ---
 

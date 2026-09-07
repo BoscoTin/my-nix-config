@@ -14,32 +14,21 @@ Still manual:
 - Notification: show preview
 - Wallpaper > Big Sur graphic
 
-## Caps Lock → Google IME (romaji ⇄ alphanumeric)
+## Caps Lock → Google IME (romaji ⇄ alphanumeric) — unsolved
 
-Replaces the old karabiner rule. The macOS "Use Caps Lock to switch input
-source" toggle does **not** work with Google Japanese IME (macOS treats it as
-Latin), so instead:
+The old karabiner rule has no clean replacement:
 
-**nix (done)** — `modules/darwin/system/keyboard.nix` maps Caps Lock → 英数
-(Lang2) via `system.keyboard.userKeyMapping`. Verify after a switch:
-`hidutil property --get "UserKeyMapping"` shows `Src 30064771129 -> Dst 30064771217`.
+- macOS's "Use Caps Lock to switch input source" **ignores Google Japanese IME**
+  (Mozc reports ASCII-capable, so macOS sees it as Latin).
+- Kotoeri (Apple's IME) works with it, but hard-binds `Ctrl`+digit for
+  conversion — breaks `Ctrl+3` / `Ctrl+Shift+3` space switching in Arc/Zen.
+- `hidutil` `Caps Lock → 英数` + Google IME keymap `Eisu → ToggleAlphanumericMode`
+  works, but Caps Lock stops being a caps-lock key and there's no LED.
 
-**one-time manual:**
-
-1. Enable "Japanese – Google" as an input source (System Settings > Keyboard >
-   Input Sources > +). Google IME itself is a manual install (not in nixpkgs) —
-   <https://www.google.co.jp/ime/>.
-2. Google Japanese IME > Preferences > Keymap > Customize. Bind key `Eisu`
-   (英数) to command `ToggleAlphanumericMode` for the Composition, Conversion
-   and Precomposition/Direct modes. (Mozc's default MS-IME/Kotoeri preset may
-   already give "Eisu → alphanumeric"; the custom `ToggleAlphanumericMode`
-   binding is what makes it toggle back.) The keymap is a binary config, not
-   nix-manageable.
-3. Turn **off** the macOS "Use Caps Lock to switch…" toggle if you had enabled
-   it — Caps Lock no longer reaches macOS as a caps-lock event, so it's inert.
-
-Caveats: Caps Lock stops working as a caps-lock key; no LED feedback (that
-needed karabiner).
+Currently: none adopted. The `Caps Lock → 英数` block is left commented in
+`modules/darwin/system/keyboard.nix`; use the 英数 key by hand. To try the
+hidutil route, uncomment that block, `just switch`, and set the Google IME
+keymap. Google IME itself is a manual install — <https://www.google.co.jp/ime/>.
 
 ## Modifier keys
 

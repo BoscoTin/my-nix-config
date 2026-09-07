@@ -1,5 +1,9 @@
 # Removing the leftover karabiner install
 
+> Done on `oblivionis` (2026-09). Kept as reference for `doloris` / a
+> reinstall-then-remove.
+
+
 Phase 7 removed karabiner from the nix config, but that only stops nix from
 *managing* it. The already-installed launchd jobs, plist files, app bundle and
 DriverKit system extension stay until you tear them down.
