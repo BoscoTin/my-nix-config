@@ -100,19 +100,20 @@ Findings so far:
   OpenVanilla are only in `AppleInputSourceHistory`, not
   `AppleEnabledInputSources`. No caps-lock-switch flag present.
 
-So there is currently **nothing to capture** for the Caps Lock IME switch —
-Google IME isn't an enabled input source right now. Set it up for real first
-(enable Japanese - Google, turn on the Caps Lock switch), then re-run the
-capture; the `keyboard.nix` scaffold is ready for the delta.
+Decisions:
 
-Modifier keys: still need
-`defaults -currentHost read -g com.apple.keyboard.modifiermapping` (or the
-per-device `com.apple.keyboard.modifiermapping.<vendor-product>` key). Caveat:
-that mapping is keyed by USB vendor/product id — only reproduces on the same
-keyboard model.
+- **Caps Lock → Google IME**: stays a manual System Settings step. Enabling a
+  third-party input source and its caps-lock toggle doesn't survive macOS
+  upgrades declaratively, and Google IME itself isn't nix-installable. Do it in
+  System Settings > Keyboard > Input Sources.
+- **Left Ctrl ↔ Left Command** (built-in keyboard): now nix, via
+  `system.keyboard.userKeyMapping` in `keyboard.nix` (from the archived
+  `karabiner.json`). Verify: `hidutil property --get "UserKeyMapping"`.
+- **ikki-68 Left Command ↔ Left Option**: per-device, System Settings >
+  Keyboard > Modifier Keys with that board selected (keyed by USB id, not
+  worth nix-ifying).
 
-Status: **IME not yet in a capturable state; modifier mapping output still
-needed.**
+Status: **ctrl/cmd swap in nix; IME + per-device swap are manual by choice.**
 
 ## 6. rollback target different
 

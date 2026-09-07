@@ -20,32 +20,9 @@
       HIDKeyboardModifierMappingDst = 30064771296; # -> Left Control
     }
   ];
-  # The ikki-68 external board also wants Left Command <-> Left Option. That is
-  # per-device, which userKeyMapping can't express — do it in
-  # System Settings > Keyboard > Keyboard Shortcuts > Modifier Keys with that
-  # keyboard selected, then optionally capture
-  # com.apple.keyboard.modifiermapping.28779-17-0 into CustomUserPreferences.
 
-  # --- Caps Lock -> Google Japanese IME かな <-> halfwidth alphanumeric ------
-  #
-  # Replaces the karabiner "Google Alphanumeric/Hiragana" complex_modifications.
-  # macOS does this natively:
-  #   System Settings > Keyboard > Input Sources > Edit... >
-  #   "Use the Caps Lock key to switch to and from <Japanese - Google>"
-  # (requires "Japanese - Google" to be an enabled input source first).
-  #
-  # It writes com.apple.HIToolbox; the exact key is version/machine specific.
-  # Capture it once, then paste the delta below:
-  #
-  #   defaults read com.apple.HIToolbox > /tmp/hit.before
-  #   # ...toggle the setting ON in System Settings...
-  #   defaults read com.apple.HIToolbox > /tmp/hit.after
-  #   diff /tmp/hit.before /tmp/hit.after
-  #
-  # system.defaults.CustomUserPreferences."com.apple.HIToolbox" = {
-  #   # <captured keys>
-  # };
-  #
-  # Google IME's own keymap (Caps Lock -> "set to alphanumeric", かな ->
-  # "set to Hiragana") is a binary protobuf and stays a one-time manual step.
+  # Per-device swaps (ikki-68 Left Command <-> Left Option) and the
+  # Caps Lock -> Google IME かな/alphanumeric toggle are done in System
+  # Settings by hand — macOS input sources and per-keyboard modifier maps
+  # don't survive OS upgrades declaratively. See docs/mac_reminders.md.
 }
