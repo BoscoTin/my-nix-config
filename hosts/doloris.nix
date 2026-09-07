@@ -7,7 +7,6 @@
 {
   imports = [ ../profiles/work.nix ];
 
-  services.karabiner-elements.enable = false;
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults.dock.orientation = "right";

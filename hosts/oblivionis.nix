@@ -10,7 +10,6 @@
   # fix on 25.11 error: Build user group has mismatching GID, aborting activation
   ids.gids.nixbld = 350;
 
-  services.karabiner-elements.enable = true;
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults.dock.orientation = "bottom";
