@@ -17,7 +17,9 @@
     package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty;
 
     settings = {
-      theme = "catppuccin-macchiato";
+      # ghostty's bundled theme name (see `ghostty +list-themes`), not the
+      # bat/delta "catppuccin-macchiato" slug
+      theme = "Catppuccin Macchiato";
 
       font-family = "MesloLGS NF";
       font-size = 11;
