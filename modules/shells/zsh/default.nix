@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -7,6 +8,9 @@
 {
   # manage by hm, please only be imported in hm-module
   programs.zsh = {
+    # keep the pre-26.05 default (~/.zshrc); 26.05 moves it under XDG
+    dotDir = config.home.homeDirectory;
+
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;

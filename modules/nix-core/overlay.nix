@@ -10,6 +10,14 @@
     inputs.nix-vscode-extensions.overlays.default
     inputs.ghostty.overlays.default
     inputs.agenix.overlays.default
+
+    # pkgs.unstable.<pkg> — nixos-unstable, for packages not yet good on stable
+    (final: prev: {
+      unstable = import inputs.nixpkgs-unstable {
+        system = prev.stdenv.hostPlatform.system;
+        config.allowUnfree = true;
+      };
+    })
     (self: super: {
       karabiner-elements = super.karabiner-elements.overrideAttrs (old: {
         version = "14.13.0";
