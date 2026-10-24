@@ -76,3 +76,19 @@ macOS input sources, per-keyboard modifier maps, and the Caps Lock → Google
 IME toggle — they don't survive OS upgrades declaratively. See
 `docs/mac_reminders.md`. **Do not re-add karabiner** (managed work machines
 block its DriverKit approval); `keyboard.nix` has the `hidutil` alternatives.
+
+## Delegation roles
+
+Work in an orchestrator + advisor pattern. Tool-agnostic; model mapping for
+Claude Code lives in `CLAUDE.md`.
+
+- **Orchestrator** (main chat) — talks to the user, plans, splits larger tasks,
+  delegates, summarizes. Summarize subagent results; don't paste their output.
+- **`scout`** — read-only search, grep, and bulk reading. Delegate to it
+  instead of running broad searches yourself; use it before any edit.
+- **`advisor`** — read-only. Consult before architectural decisions or risky
+  refactors, and whenever stuck after one failed attempt; then act on its
+  recommendation. It only advises; the orchestrator makes the changes.
+- **`worker`** — implements an independent, well-scoped task. Run several in
+  parallel only when they don't touch the same files. Workers follow the ground
+  rules above: build both hosts, never `switch`.
