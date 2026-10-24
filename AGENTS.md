@@ -82,6 +82,11 @@ block its DriverKit approval); `keyboard.nix` has the `hidutil` alternatives.
 Work in an orchestrator + advisor pattern. Tool-agnostic; model mapping for
 Claude Code lives in `CLAUDE.md`.
 
+**Route automatically.** The user should never have to say "use the scout" or
+"ask the advisor". Decide the route yourself from the task: search/reading →
+`scout`; design choices, risky changes, or being stuck → `advisor`; scoped
+edits → `worker`. Do trivial one-file reads and edits inline.
+
 - **Orchestrator** (main chat) — talks to the user, plans, splits larger tasks,
   delegates, summarizes. Summarize subagent results; don't paste their output.
 - **`scout`** — read-only search, grep, and bulk reading. Delegate to it
@@ -92,3 +97,14 @@ Claude Code lives in `CLAUDE.md`.
 - **`worker`** — implements an independent, well-scoped task. Run several in
   parallel only when they don't touch the same files. Workers follow the ground
   rules above: build both hosts, never `switch`.
+
+## Context hygiene
+
+- One task per chat. Keep the main context small: delegate bulk reading to
+  `scout`, don't paste large files or command output, summarize instead.
+- When a chat is getting long (many tasks done, large outputs accumulated, or
+  the topic has shifted), say so and recommend opening a new chat. Don't wait
+  to be asked.
+- Before ending a marathon chat, write a short handoff the user can paste into
+  the new chat: goal, what's done (commits/files), current state, next steps,
+  open decisions. Save it in the scratchpad or reply inline; don't commit it.
