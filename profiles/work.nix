@@ -18,4 +18,8 @@
     node = true;
     go = true;
   };
+
+  homebrew.casks = [
+    "firefox"
+  ];
 }

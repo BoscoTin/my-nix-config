@@ -16,11 +16,8 @@
     # "/System/Applications/Launchpad.app/"
     "/Applications/Ghostty.app/"
     "/System/Applications/Notes.app/"
-    "/Applications/Arc.app/"
+    "/Applications/Zen.app/"
+    "/Applications/Brave Browser.app/"
     "/Users/${vars.username}/Applications/Home Manager Apps/Visual Studio Code.app"
-  ];
-
-  homebrew.casks = [
-    "firefox"
   ];
 }

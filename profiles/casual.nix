@@ -15,4 +15,13 @@
     node = true;
     go = true;
   };
+
+  homebrew.casks = [
+    "zen"
+    "discord"
+    "telegram"
+    "signal"
+    "motrix"
+    "surfshark" # casual only (gluetun is a proxy, not system-wide)
+  ];
 }

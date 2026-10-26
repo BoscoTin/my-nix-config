@@ -14,6 +14,19 @@ Still manual:
 - Notification: show preview
 - Wallpaper > Big Sur graphic
 
+## Homebrew casks removed from nix
+
+`homebrew.onActivation.cleanup = "none"`, so dropping a cask from nix does not
+uninstall it. After `just switch`, remove leftovers by hand:
+
+- oblivionis: `brew uninstall --cask arc floorp` (replaced by Zen; export Arc
+  bookmarks first, e.g. with `arc2zen`)
+- doloris: `brew uninstall --cask arc` (replaced by Helium + Brave)
+
+`just switch` also runs `brew update` and upgrades casks
+(`homebrew.onActivation.autoUpdate/upgrade = true`), so claude-code and codex
+stay current without a separate command.
+
 ## Caps Lock → Google IME (romaji ⇄ alphanumeric) — unsolved
 
 The old karabiner rule has no clean replacement:
