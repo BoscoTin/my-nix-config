@@ -62,13 +62,14 @@ first for the layout and workflow.
 - `secrets/*.age` and `secrets/secrets.nix` are committed (encrypted /
   public); everything else in `secrets/` is gitignored.
 - Edit: `just secret-edit <file>.age`. `profiles/secrets.nix` decrypts to
-  `~/.config/git/{10-work,00-local}` at activation, gated on the blob
-  existing (a host builds fine before blobs are committed).
-- Git identity: base `[user]` is the personal identity on both hosts;
-  `my.git.includePath` selects the include — casual `00-local` (work identity
-  only for matching remotes), work `10-work` (work identity everywhere). The
-  `sshCommand` paths in the config/blob are fixed (`~/.ssh/id_ed25519_default`,
-  `~/.ssh/id_ed25519_sl`) — keep SSH key filenames consistent per device.
+  `~/.config/git/<profile>.{identity,conditions}` at activation, gated on the
+  blob existing (a host builds fine before blobs are committed).
+- Git identity: named profiles per organization (`personal` + `<organization>`).
+  `my.git.mainProfile` is the host's base identity; `my.git.includeProfiles`
+  add remote-URL conditions that override it. Details in `secrets/README.md`.
+- SSH keys are per device and per profile, never copied between devices or
+  stored by nix: `~/.ssh/id_ed25519_<profile>` (`just ssh-keygen <profile>`),
+  same filename everywhere so the config is identical.
 
 ## Deliberately not nix-managed
 

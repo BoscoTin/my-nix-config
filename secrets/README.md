@@ -6,23 +6,41 @@ gitignored.
 
 ## How it wires up
 
-`profiles/secrets.nix` (imported by `profiles/base.nix`) decrypts blobs at
-activation to `0600` files under `~/.config/git/`:
+Git identities are **named profiles** (`personal`, plus one per organization). Each host
+picks a main profile and a list of included ones in `profiles/<name>.nix`
+(`my.git.mainProfile`, `my.git.includeProfiles`):
 
-| blob | -> file | hosts |
+| host | main | included |
 |---|---|---|
-| `git-work.age`  | `~/.config/git/10-work`  — `[user]` / `[core]` for work | every host |
-| `git-local.age` | `~/.config/git/00-local` — `[includeIf ...]` dispatch   | casual only |
+| casual (oblivionis) | `personal`       | `<organization>` |
+| work (doloris)      | `<organization>` | `personal`       |
 
-`modules/git/hm-module.nix` adds one `include.path`, set by
-`my.git.includePath`:
+Per profile `<name>`, `profiles/secrets.nix` decrypts to `0600` files under
+`~/.config/git/` at activation:
 
-- **casual** -> `00-local`: personal identity is the default; the work identity
-  applies only to repos whose remote matches the `[includeIf]` condition.
-- **work** -> `10-work`: every repo commits as the work identity, no personal
-  default.
+| blob | -> file | decrypted on |
+|---|---|---|
+| `git-<name>.identity.age`   | `<name>.identity` — `[user]`, `core.sshCommand` | main + included |
+| `git-<name>.conditions.age` | `<name>.conditions` — `[includeIf]` stanzas      | included only |
 
-Git ignores the include when the file is absent (un-provisioned host).
+`modules/git/hm-module.nix` includes `<main>.identity` unconditionally, then
+each included profile's `.conditions` (later wins), so matching repos switch
+identity. A main profile's `.conditions` is never decrypted or included.
+Git ignores includes whose file is absent (un-provisioned host).
+
+A new organization is a new profile name in the `profileType` enum
+(`modules/my/base-module.nix`), its blobs, and a key.
+
+## SSH keys
+
+One key per device per profile, generated on that device and never copied
+(nix only references the path, never the key):
+
+```
+just ssh-keygen personal          # -> ~/.ssh/id_ed25519_personal
+just ssh-keygen <organization>    # -> ~/.ssh/id_ed25519_<organization>
+just ssh-pubkey <organization>    # register on that org's GitHub/Bitbucket
+```
 
 ## First-time setup (one machine)
 
@@ -39,29 +57,45 @@ USB copy) — losing it means re-encrypting every blob.
 Create the blobs (`$EDITOR` opens on the decrypted content):
 
 ```
-just secret-edit git-work.age
+just secret-edit git-personal.identity.age
+just secret-edit git-<organization>.identity.age
 ```
 
 ```
 [user]
 	name = <you>
-	email = <you>@work.example
+	email = <you>@example.com
 [core]
-	sshCommand = ssh -i ~/.ssh/id_ed25519_work
+	sshCommand = ssh -i ~/.ssh/id_ed25519_<profile> -o IdentitiesOnly=yes
 ```
 
 ```
-just secret-edit git-local.age
+just secret-edit git-<organization>.conditions.age
+just secret-edit git-personal.conditions.age
 ```
+
+Each conditions blob has one stanza per remote pattern of that profile:
+
+`hasconfig` matches the raw remote URL (`insteadOf` does not apply), so use
+the new Bitbucket SSH host:
 
 ```
 [includeIf "hasconfig:remote.*.url:git@github.com:acme/**"]
-	path = ~/.config/git/10-work
-[includeIf "hasconfig:remote.*.url:git@bitbucket.org:acme/**"]
-	path = ~/.config/git/10-work
+	path = ~/.config/git/<organization>.identity
+[includeIf "hasconfig:remote.*.url:git@ssh.bitbucket.org:acme/**"]
+	path = ~/.config/git/<organization>.identity
 ```
 
-The work machine only needs `git-work.age`; the casual machine needs both.
+`personal.conditions` is the same shape with your own account, pointing at
+`~/.config/git/personal.identity`:
+
+```
+[includeIf "hasconfig:remote.*.url:git@github.com:<your-user>/**"]
+	path = ~/.config/git/personal.identity
+```
+
+A host needs the identity blob of its main profile plus identity and
+conditions blobs of each included profile.
 
 Then `git add secrets/*.age secrets/secrets.nix`, `just build`, `just switch`.
 

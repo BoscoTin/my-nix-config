@@ -4,6 +4,13 @@
 # `osConfig.my.*`. Options are added here as the phase that consumes them lands.
 { lib, vars, ... }:
 
+let
+  # named git profiles; one pair of agenix blobs each (see secrets/README.md)
+  profileType = lib.types.enum [
+    "personal"
+    "sl"
+  ];
+in
 {
   options.my = {
     profile = lib.mkOption {
@@ -24,15 +31,25 @@
       go = lib.mkEnableOption "go toolchain (programs.go, golangci-lint)";
     };
 
-    git.includePath = lib.mkOption {
-      type = lib.types.str;
-      default = "~/.config/git/00-local";
-      description = ''
-        Path git unconditionally includes for identity. Casual keeps the
-        default (an [includeIf] dispatch that only swaps identity for work
-        repos); work points it straight at the work identity so every repo
-        commits as work.
-      '';
+    git = {
+      mainProfile = lib.mkOption {
+        type = profileType;
+        description = ''
+          Git profile whose identity (user, email, ssh key) applies to every
+          repo on this host. Included unconditionally; its `.conditions` blob is
+          never wired up.
+        '';
+      };
+
+      includeProfiles = lib.mkOption {
+        type = lib.types.listOf profileType;
+        default = [ ];
+        description = ''
+          Extra git profiles whose `.conditions` (remote-URL `includeIf` rules)
+          override the main identity for matching repos. Must not contain
+          `mainProfile`.
+        '';
+      };
     };
   };
 }

@@ -4,13 +4,20 @@
   ...
 }:
 
+let
+  git = osConfig.my.git;
+  gitDir = "~/.config/git";
+in
 {
   programs.git = {
     lfs.enable = true;
 
-    # identity entry point — decrypted by profiles/secrets.nix, absent (and
-    # silently ignored by git) on un-provisioned hosts. See my.git.includePath.
-    includes = [ { path = osConfig.my.git.includePath; } ];
+    # Main identity first, then each included profile's remote-URL conditions
+    # (later wins). Files are decrypted by profiles/secrets.nix; git ignores
+    # an include whose file is absent (un-provisioned host).
+    includes =
+      [ { path = "${gitDir}/${git.mainProfile}.identity"; } ]
+      ++ map (name: { path = "${gitDir}/${name}.conditions"; }) git.includeProfiles;
 
     ignores = [
       ".DS_Store"
@@ -32,7 +39,8 @@
       pull.rebase = false;
 
       core = {
-        sshCommand = "ssh -i ~/.ssh/id_ed25519_default";
+        # fallback; the main profile identity overrides it
+        sshCommand = "ssh -i ~/.ssh/id_ed25519_personal -o IdentitiesOnly=yes";
         editor = "vim";
       };
     };

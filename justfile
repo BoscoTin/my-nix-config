@@ -93,10 +93,10 @@ install-darwin:
 install-nix:
     sh <(curl -L https://nixos.org/nix/install)
 
-# generate the default ssh key, e.g. `just ssh-keygen you@example.com`
-ssh-keygen email:
-    ssh-keygen -t ed25519 -C "{{ email }}" -f ~/.ssh/id_ed25519_default
+# generate this device's ssh key for a git profile, e.g. `just ssh-keygen personal`
+ssh-keygen name:
+    ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_{{ name }}
 
-# print the default ssh public key
-ssh-pubkey:
-    @cat ~/.ssh/id_ed25519_default.pub
+# print a profile's ssh public key, e.g. `just ssh-pubkey personal`
+ssh-pubkey name:
+    @cat ~/.ssh/id_ed25519_{{ name }}.pub

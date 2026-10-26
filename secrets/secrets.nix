@@ -9,6 +9,8 @@ let
   shared = "age1wmqk07gvd60dvfhuzt39dn758rk7fwexes2tsdcntck8gh0525nsjytztw";
 in
 {
-  "git-local.age".publicKeys = [ shared ];
-  "git-work.age".publicKeys = [ shared ];
+  "git-personal.identity.age".publicKeys = [ shared ];
+  "git-personal.conditions.age".publicKeys = [ shared ];
+  "git-sl.identity.age".publicKeys = [ shared ];
+  "git-sl.conditions.age".publicKeys = [ shared ];
 }

@@ -6,8 +6,11 @@
 
   my.profile = "work";
 
-  # work machine: every repo commits as the work identity (no personal default)
-  my.git.includePath = "~/.config/git/10-work";
+  # work machine: work identity by default, personal identity for personal repos
+  my.git = {
+    mainProfile = "sl";
+    includeProfiles = [ "personal" ];
+  };
 
   my.roles = {
     kubernetes = true;

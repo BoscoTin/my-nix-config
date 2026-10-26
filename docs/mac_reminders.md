@@ -72,6 +72,28 @@ Finder > go to /Users/<user> > File > Add to Sidebar. Remove Recents.
 
 ---
 
+## Bitbucket SSH host migration (deadline 2026-11-12)
+
+Bitbucket Cloud moves Git-over-SSH to `ssh.bitbucket.org`. The git module ships
+an `insteadOf` rewrite so old-host remotes keep working after `just switch`.
+
+1. Bulk-rewrite remotes with your own one-off script (not in the repo).
+2. `just secret-edit git-local.age` / `git-work.age`: keep both
+   `git@bitbucket.org:<org>/**` and `git@ssh.bitbucket.org:<org>/**` in the
+   `hasconfig:remote.*.url:` conditions (`insteadOf` doesn't apply to them).
+3. Host keys: not nix-managed (no `programs.ssh` yet). Connect once with
+   `ssh -T git@ssh.bitbucket.org` and compare the fingerprint to Atlassian's
+   published list before accepting.
+4. Check by hand for hardcoded `bitbucket.org` in `~/.ssh/config`, `GOPRIVATE`,
+   CI/Pipelines `known_hosts`, Helm/k8s, and pre-commit hooks.
+5. Verify: `git ls-remote` in a migrated clone.
+6. Once no old-host remotes remain, drop the `insteadOf` and the old-host
+   condition patterns.
+7. doloris: unprovisioned; run steps 1-3 there after provisioning, before
+   its first `just switch`.
+
+---
+
 ### Unused
 
 <details>
