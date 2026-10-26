@@ -14,7 +14,7 @@ first for the layout and workflow.
 - **Don't activate the user's machine.** Build and eval only. The user runs
   `just switch`.
 - **Commits:** karma style — `<type>(<scope>): <subject>`, imperative, one
-  concern per commit. End the body with the `Co-Authored-By` trailer.
+  concern per commit. No `Co-Authored-By` trailer.
 - **Stable channel is 26.05.** `nixpkgs`, `nix-darwin`, `home-manager` all
   `release-26.05`. Bump deliberately (`nix flake update`, test, then switch).
   For a package that needs to be newer, use `pkgs.unstable.<pkg>` (overlay in
