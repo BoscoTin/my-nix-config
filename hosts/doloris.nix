@@ -7,6 +7,10 @@
 {
   imports = [ ../profiles/work.nix ];
 
+  ids.gids.nixbld = 350;
+
+  my.repoPath = "/Users/${vars.username}/my-nix-config";
+
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults.dock.orientation = "right";
