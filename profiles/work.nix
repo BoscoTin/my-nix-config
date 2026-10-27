@@ -23,5 +23,7 @@
 
   homebrew.casks = [
     "firefox"
+    "zen" # already in the doloris dock
+    "chatgpt"
   ];
 }
