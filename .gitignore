@@ -10,3 +10,7 @@ secrets/**
 !secrets/secrets.nix
 !secrets/*.age
 .claude/settings.local.json
+
+# gluetun runtime state
+config/gluetun/gluetun-data/
+config/gluetun/chromium-tw-config/

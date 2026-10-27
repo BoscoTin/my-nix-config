@@ -14,7 +14,9 @@
     cloud = true;
     node = true;
     go = true;
+    vpn = true;
   };
+  my.vpn.locations = [ "tw" "jp" ];
 
   homebrew.casks = [
     "zen"

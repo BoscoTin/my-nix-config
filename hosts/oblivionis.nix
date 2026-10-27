@@ -21,6 +21,7 @@
     "/Applications/Telegram.app/"
     "/Applications/Signal.app/"
     "/Applications/Ghostty.app/"
+    "/Applications/Helium.app/"
     "/Applications/Zen.app/"
     "/Users/${vars.username}/Applications/Home Manager Apps/Visual Studio Code.app"
   ];

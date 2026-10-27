@@ -67,6 +67,9 @@ first for the layout and workflow.
 - Git identity: named profiles per organization (`personal` + `<organization>`).
   `my.git.mainProfile` is the host's base identity; `my.git.includeProfiles`
   add remote-URL conditions that override it. Details in `secrets/README.md`.
+- WireGuard (Surfshark) confs are per device and never in the repo or agenix:
+  `just vpn-key <loc>` installs one at `~/.config/gluetun/wireguard/<loc>.conf`.
+  Sharing a key between devices makes both stall.
 - SSH keys are per device and per profile, never copied between devices or
   stored by nix: `~/.ssh/id_ed25519_<profile>` (`just ssh-keygen <profile>`),
   same filename everywhere so the config is identical.

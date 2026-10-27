@@ -27,6 +27,40 @@ uninstall it. After `just switch`, remove leftovers by hand:
 (`homebrew.onActivation.autoUpdate/upgrade = true`), so claude-code and codex
 stay current without a separate command.
 
+## gluetun (Surfshark proxies, `my.roles.vpn`)
+
+Nix provides the `~/.config/gluetun-stack` link to `config/gluetun/` (compose,
+nginx, PAC; tracked) and `COMPOSE_PROFILES` (from `my.vpn.locations`), so each
+host starts only its own locations.
+
+- Confs are per device and never in the repo: a WireGuard server keeps one
+  endpoint per key, so two devices sharing a conf make both stall. On each
+  device, in Surfshark's manual setup (WireGuard, Static IP) generate a key
+  pair for that device and location (a JP conf cannot be reused for Taiwan),
+  download the `.conf`, then `just vpn-key <loc>` (reads the clipboard, or pass
+  a path). Back the .conf up in the password manager. Locations per host:
+  `my.vpn.locations` (casual tw + jp, work jp). A switch warns about locations
+  without a conf; to replace a key, remove the old conf first.
+- Docker Desktop must start at login (Settings > General > "Start Docker
+  Desktop when you sign in"); containers use `restart: unless-stopped`.
+- Start (new shell, so `COMPOSE_PROFILES` is set):
+  `cd ~/.config/gluetun-stack && docker compose up -d`.
+- Ports (all 127.0.0.1): HTTP proxy jp 18888; PAC jp 18889
+  (`pac/jp-proxy.pac`); HTTP proxy tw 18891 (for Helium, all traffic).
+- JP routing (manual, per Wi-Fi network): System Settings > Wi-Fi > Details...
+  (on the connected network) > Proxies > turn on Automatic Proxy Configuration,
+  URL `http://127.0.0.1:18889/jp-proxy.pac`. Only the PAC's domains use
+  the proxy; with `gluetun-jp` stopped they fail instead of bypassing.
+- Helium (all traffic via Taiwan, manual): install a proxy extension
+  (FoxyProxy or SwitchyOmega), add an HTTP proxy `127.0.0.1` port `18891`, and
+  keep it always on. Helium otherwise follows the macOS system proxy (the JP
+  PAC). Verify with ipinfo.io (country TW). If `gluetun-tw` is down, pages
+  fail instead of leaking.
+- Proxy logs (`HTTPPROXY_LOG`) stay on; json-file rotation caps them at
+  5 x 10 MB per container (Docker has no age-based retention).
+- Docker Desktop VM: raise Resources > Memory/Swap; a starved VM makes the
+  proxy path stall while gluetun still reports healthy.
+
 ## Caps Lock → Google IME (romaji ⇄ alphanumeric) — unsolved
 
 The old karabiner rule has no clean replacement:

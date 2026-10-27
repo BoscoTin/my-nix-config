@@ -17,7 +17,9 @@
     cloud = true;
     node = true;
     go = true;
+    vpn = true;
   };
+  my.vpn.locations = [ "jp" ];
 
   homebrew.casks = [
     "firefox"

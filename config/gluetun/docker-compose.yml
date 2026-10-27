@@ -1,0 +1,64 @@
+name: gluetun
+
+# Surfshark static-IP WireGuard exits, one gluetun per location.
+# WireGuard confs are agenix-decrypted by nix (profiles/secrets.nix) to
+# ~/.config/gluetun/wireguard/<loc>.conf. Which locations a host runs follows
+# my.vpn.locations, which nix exports as COMPOSE_PROFILES (jp, tw): a host only
+# starts the services of its own locations.
+#
+#   jp  HTTP proxy 127.0.0.1:18888   PAC http://127.0.0.1:18889/jp-proxy.pac
+#   tw  HTTP proxy 127.0.0.1:18891 (Helium, all traffic)
+
+x-gluetun: &gluetun
+  image: qmcgaw/gluetun:latest
+  cap_add:
+    - NET_ADMIN
+  devices:
+    - /dev/net/tun:/dev/net/tun
+  environment: &gluetun-env
+    TZ: Asia/Taipei
+    VPN_SERVICE_PROVIDER: custom
+    VPN_TYPE: wireguard
+    # HTTP CONNECT proxy: tunnels HTTPS and wss://
+    HTTPPROXY: "on"
+    HTTPPROXY_LOG: "on"
+  restart: unless-stopped
+  # Docker has no age-based log retention; cap by size so the proxy log stays
+  # bounded (50 MB per container).
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "5"
+
+services:
+  gluetun-jp:
+    <<: *gluetun
+    container_name: gluetun-jp
+    profiles: [jp]
+    ports:
+      - "127.0.0.1:18888:8888/tcp"
+    volumes:
+      - ./gluetun-data/jp:/gluetun
+      - ${HOME}/.config/gluetun/wireguard/jp.conf:/gluetun/wireguard/wg0.conf:ro
+
+  gluetun-tw:
+    <<: *gluetun
+    container_name: gluetun-tw
+    profiles: [tw]
+    ports:
+      - "127.0.0.1:18891:8888/tcp"
+    volumes:
+      - ./gluetun-data/tw:/gluetun
+      - ${HOME}/.config/gluetun/wireguard/tw.conf:/gluetun/wireguard/wg0.conf:ro
+
+  pac-jp:
+    image: nginx:alpine
+    container_name: gluetun-pac-jp
+    profiles: [jp]
+    ports:
+      - "127.0.0.1:18889:80/tcp"
+    volumes:
+      - ./pac:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped

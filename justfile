@@ -71,6 +71,22 @@ gc:
     sudo nix-collect-garbage --delete-older-than 30d
     nix store optimise
 
+# install this device's Surfshark WireGuard conf for a location, e.g. `just vpn-key jp` (from the clipboard) or `just vpn-key jp ./jp.conf`
+vpn-key loc src="":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    dir="$HOME/.config/gluetun/wireguard"
+    dest="$dir/{{ loc }}.conf"
+    [[ -w "$dir" ]] || { echo "$dir is not writable: just switch first" >&2; exit 1; }
+    [[ ! -e "$dest" ]] || { echo "$dest exists: remove it first to replace the key" >&2; exit 1; }
+    tmp="$(mktemp)"
+    trap 'rm -f "$tmp"' EXIT
+    if [[ -n "{{ src }}" ]]; then cat "{{ src }}" > "$tmp"; else pbpaste > "$tmp"; fi
+    grep -q '^\[Interface\]' "$tmp" && grep -q '^PrivateKey' "$tmp" && grep -q '^\[Peer\]' "$tmp" \
+      || { echo "input is not a WireGuard .conf" >&2; exit 1; }
+    install -m 0600 "$tmp" "$dest"
+    echo "installed $dest; start it with: cd ~/.config/gluetun-stack && docker compose up -d"
+
 # --- secrets (agenix) -------------------------------------------------------
 
 # edit an encrypted blob, e.g. `just secret-edit git-work.age`

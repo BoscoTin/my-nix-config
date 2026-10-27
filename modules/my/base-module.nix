@@ -29,6 +29,19 @@ in
       cloud = lib.mkEnableOption "cloud CLIs (awscli2)";
       node = lib.mkEnableOption "node toolchain (fnm)";
       go = lib.mkEnableOption "go toolchain (programs.go, golangci-lint)";
+      vpn = lib.mkEnableOption "gluetun (Surfshark) proxy stack and ~/.config/gluetun";
+    };
+
+    vpn.locations = lib.mkOption {
+      type = lib.types.listOf (lib.types.enum [ "tw" "jp" ]);
+      default = [ ];
+      description = ''
+        Surfshark static-IP locations this host runs a gluetun container for.
+        The WireGuard .conf for each lives at
+        ~/.config/gluetun/wireguard/<location>.conf, installed per device with
+        `just vpn-key <location>` (never stored in the repo). Only used when
+        `my.roles.vpn` is enabled.
+      '';
     };
 
     git = {
