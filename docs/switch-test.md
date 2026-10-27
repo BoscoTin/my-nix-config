@@ -17,8 +17,8 @@ branch is checked out — it's a re-activation, not a rebuild.
 ## 2. Build + preview
 
 ```bash
-nix run .#just -- build                           # every host must build
-nix run .#just -- diff <host>                      # nvd diff vs the running system
+nix run '.#just' -- build                           # every host must build
+nix run '.#just' -- diff <host>                      # nvd diff vs the running system
 ```
 
 Read the diff. Every line should trace to a change you made — package
@@ -28,7 +28,7 @@ something unexplained shows up.
 ## 3. Switch + confirm
 
 ```bash
-nix run .#just -- switch <host>
+nix run '.#just' -- switch <host>
 exec zsh
 nix build --no-link --print-out-paths .#darwinConfigurations.<host>.system
 readlink -f /run/current-system                    # equal to the line above; differs from ~/rollback-target.txt

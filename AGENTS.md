@@ -24,7 +24,7 @@ first for the layout and workflow.
 
 - `flake.nix` — inputs + `lib/mkHost.nix` builds each `darwinSystem` from
   `{ hostname, system }`. `checks.aarch64-darwin.*` = the host system
-  closures. `packages.<sys>.just` = pinned `just` for `nix run .#just`.
+  closures. `packages.<sys>.just` = pinned `just` for `nix run '.#just'`.
 - **Module discovery** — `all-modules.nix` globs `modules/` by filename
   suffix, no manual import list:
   - `*base-module.nix` → system (darwin) + carried into every eval

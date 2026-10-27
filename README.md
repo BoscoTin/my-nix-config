@@ -20,12 +20,12 @@ Always `just build` + `just diff` before `just switch`. For risky changes see
 ### Bootstrap (no `just` yet)
 
 ```
-nix run .#just -- build
-nix run .#just -- switch <host>     # first switch installs just + nvd
+nix run '.#just' -- build
+nix run '.#just' -- switch <host>     # first switch installs just + nvd
 exec zsh
 ```
 
-`nix run .#just` uses the `just` pinned by this flake — no prior install.
+`nix run '.#just'` uses the `just` pinned by this flake — no prior install.
 
 ## Layout
 
@@ -60,7 +60,7 @@ just install-nix
 just install-darwin              # xcode CLT, rosetta, homebrew
 just ssh-keygen you@example.com
 # copy ~/.config/agenix/key.txt over  (secrets/README.md)
-nix run .#just -- switch <host>
+nix run '.#just' -- switch <host>
 exec zsh
 ```
 

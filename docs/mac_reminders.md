@@ -58,6 +58,9 @@ host starts only its own locations.
   fail instead of leaking.
 - Proxy logs (`HTTPPROXY_LOG`) stay on; json-file rotation caps them at
   5 x 10 MB per container (Docker has no age-based retention).
+- If `docker compose up -d` fails with "mountpoint ... is outside of rootfs"
+  for `wg0.conf`, restart Docker Desktop and retry. Fallback: mount the conf
+  with compose `secrets:` (`WIREGUARD_CONF_SECRETFILE=/run/secrets/wg0.conf`).
 - Docker Desktop VM: raise Resources > Memory/Swap; a starved VM makes the
   proxy path stall while gluetun still reports healthy.
 
