@@ -44,7 +44,7 @@
     in {
       darwinConfigurations = {
         oblivionis = mkHost { hostname = "oblivionis"; system = "aarch64-darwin"; };
-        doloris = mkHost { hostname = "doloris"; system = "aarch64-darwin"; };
+        doloris = mkHost { hostname = "doloris"; system = "aarch64-darwin"; username = "boscotang"; };
       };
 
       # `nix run .#just` — pinned to this flake's nixpkgs, so the workflow
